@@ -1,0 +1,104 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a [routerLink]="['/home']">
+        <img src="../../../../assets/imgs/logo.svg" alt="logo" />
+      </a>
+    </div>
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right">
+        <span
+          style="color: white"
+          nz-icon
+          nzType="bell"
+          nzTheme="outline"
+        ></span>
+        <span class="submenu-title">Notifications</span>
+      </li>
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right">
+        <span
+          style="color: white"
+          nz-icon
+          nzType="inbox"
+          nzTheme="outline"
+        ></span>
+        <span class="submenu-title">Inbox</span>
+      </li>
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" nzSelected="true">
+        <span
+          style="color: white"
+          nz-icon
+          nzType="file-text"
+          nzTheme="outline"
+        ></span>
+        <span class="submenu-title">Posts & Stories</span>
+      </li>
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right">
+        <span
+          style="color: white"
+          nz-icon
+          nzType="comment"
+          nzTheme="outline"
+        ></span>
+        <span class="submenu-title">Comments & Mentions</span>
+      </li>
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right">
+        <span
+          style="color: white"
+          nz-icon
+          nzType="calendar"
+          nzTheme="outline"
+        ></span>
+        <span class="submenu-title">Calendar</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <div>
+          <ul class="submenu-header" nz-menu nzMode="horizontal">
+            <li class="submenu-header-title" nz-menu-item>Published</li>
+            <li class="submenu-header-title" nz-menu-item>Analytics</li>
+            <li class="submenu-header-title" nz-menu-item>Administration</li>
+          </ul>
+        </div>
+        <div class="button-box">
+          <button
+            class="create-button"
+            nz-button
+            nz-dropdown
+            [nzDropdownMenu]="menu"
+          >
+            Create <span nz-icon nzType="plus" nzTheme="outline"></span>
+          </button>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>
+                <img style="padding-right: 10.5px;" src="../../../../assets/icons/post-icon.svg">
+                <span>Posts</span>
+              </li>
+              <li nz-menu-item>
+                <img style="padding-right: 10.5px;" src="../../../../assets/icons/story-icon.svg">
+                <span>Stories</span>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <!-- <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div> -->
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

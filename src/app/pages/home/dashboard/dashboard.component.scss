@@ -1,0 +1,74 @@
+.home {
+  height: 100%;
+  background: #3253AB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-logo {
+  padding-bottom: 102px;
+}
+
+.home-container {
+  //height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 42px 20px;
+  gap: 4px;
+  border-radius: 6px;
+  margin: 15px;
+  width: 250px;
+  height: 300px;
+}
+
+.publishing {
+  background: linear-gradient(0deg, rgba(0, 94, 88, 0.08), rgba(0, 94, 88, 0.08)), #FFFFFF;;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  h2 {
+     margin-top: 15px;
+  }
+}
+
+.analytics {
+  background: #FFDBDB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  .title {
+    margin-top: 13px;
+  }
+}
+
+.administration {
+  background: linear-gradient(0deg, rgba(0, 164, 228, 0.08), rgba(0, 164, 228, 0.08)), #FFFFFF;;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  .title {
+    margin-top: 13px;
+  }
+}
+
+p {
+  //width: 75px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
