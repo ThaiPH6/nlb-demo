@@ -1,21 +1,30 @@
-<div class="home-container">
-  <div class="card publishing">
-    <img src="../../../../assets/imgs/publishing.svg" />
-    <h2 class="title">Publishing</h2>
-    <p>Plan, create, and schedule</p>
+<div class="home">
+  <div class="home-logo">
+    <img src="../../../../assets/imgs/home-logo.svg">
   </div>
+  <div class="home-container">
+    <div class="card publishing">
+      <a [routerLink]="['/main']">
+        <img src="../../../../assets/imgs/publishing.svg" />
+      </a>
+      <h2 class="title">Publishing</h2>
+      <p>Plan, create, and schedule</p>
+    </div>
 
-  <div class="card analytics">
-    <img src="../../../../assets/imgs/analytics.svg" />
+    <div class="card analytics">
+      <a [routerLink]="['/main']">
+        <img src="../../../../assets/imgs/analytics.svg" />
+      </a>
+      <h2 class="title">Analytics</h2>
+      <p>Optimize and learn from your content</p>
+    </div>
 
-    <h2 class="title">Analytics</h2>
-    <p>Optimize and learn from your content</p>
-  </div>
-
-  <div class="card administration">
-    <img src="../../../../assets/imgs/administration.svg" />
-
-    <h2 class="title">Administration</h2>
-    <p>Answer comments to get closer to your audience</p>
+    <div class="card administration">
+      <a [routerLink]="['/main']">
+        <img src="../../../../assets/imgs/administration.svg" />
+      </a>
+      <h2 class="title">Administration</h2>
+      <p>Answer comments to get closer to your audience</p>
+    </div>
   </div>
 </div>
