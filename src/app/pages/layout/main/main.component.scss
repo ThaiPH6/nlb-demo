@@ -34,9 +34,9 @@
   padding-left: 24px;
   overflow: hidden;
   line-height: 64px;
-  background: #1492e0 !important;
+  background: #3253AB !important;
   transition: all 0.3s;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid white;
 }
 
 .sidebar-logo img {
@@ -57,11 +57,11 @@
 }
 
 .ant-menu {
-  background: #1492e0 !important;
+  background: #3253AB !important;
 }
 
 .ant-layout-sider {
-  background: #1492e0 !important;
+  background: #3253AB !important;
 }
 nz-header {
   padding: 0;
@@ -110,7 +110,7 @@ nz-content {
 }
 
 .ant-menu-item-selected {
-  background-color: #91c9eb !important;
+  background-color: rgba(255, 255, 255, 0.14) !important;
 }
 
 .submenu-header {
@@ -130,4 +130,8 @@ nz-content {
   color: white;
   font-family: "Poppins";
   border-radius: 3px;
+}
+
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+  border-right: none !important;
 }
