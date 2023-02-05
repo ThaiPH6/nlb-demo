@@ -12,18 +12,24 @@
             {{ button }}
           </button>
         </nz-radio-group>
-        <div nz-row [nzGutter]="16">
+        <div nz-row [nzGutter]="24">
           <div nz-col [nzSpan]="8">
             <nz-select nzPlaceHolder="Post type">
               <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
               <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
             </nz-select>
           </div>
-          <div nz-col [nzSpan]="8">
-            <nz-select nzPlaceHolder="Search by tittle/ date/ captions">
+          <div nz-col [nzSpan]="16">
+            <!-- <nz-select nzPlaceHolder="Search by tittle/ date/ captions">
               <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
               <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-            </nz-select>
+            </nz-select> -->
+            <nz-input-group style="width: 100%;" [nzSuffix]="suffixIconSearch">
+              <input type="text" nz-input placeholder="Search by tittle/ date/ captions" />
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+              <span nz-icon nzType="search"></span>
+            </ng-template>
           </div>
         </div>
       </div>
@@ -90,7 +96,14 @@
             <td [nzChecked]="true" [nzDisabled]="false"></td>
             <td>
               <div nz-row [nzGutter]="[0, 24]">
-                <div nz-col nzSpan="12">
+                <div class="avatar" nz-col nzSpan="2">
+                  <nz-avatar
+                    [nzShape]="'square'"
+                    [nzSize]="'large'"
+                    [nzIcon]="'user'"
+                  ></nz-avatar>
+                </div>
+                <div nz-col nzSpan="10">
                   <div nz-row>
                     <div nz-col nzSpan="22">
                       {{ data.title }}
@@ -103,9 +116,48 @@
                   </div>
                 </div>
                 <div nz-col nzSpan="12" class="action">
-                  <button *ngIf="data.status==='Boost post'" nz-button style="background: rgba(255, 184, 184, 0.4); border-radius: 4px; margin: 6px; width: 105px;">{{data.status}}</button>
-                  <button *ngIf="data.status==='Insight'" nz-button style="background: rgba(163, 218, 255, 0.4); border-radius: 4px; margin: 6px; width: 105px;">{{data.status}}</button>
-                  <button nz-button style="border-radius: 4px; margin: 6px;"><i nz-icon nzType="more"></i></button>
+                  <button
+                    *ngIf="data.status === 'Boost post'"
+                    nz-button
+                    style="
+                      background: rgba(255, 184, 184, 0.4);
+                      border-radius: 4px;
+                      margin: 6px;
+                      width: 105px;
+                    "
+                  >
+                    {{ data.status }}
+                  </button>
+                  <button
+                    *ngIf="data.status === 'Insight'"
+                    nz-button
+                    style="
+                      background: rgba(163, 218, 255, 0.4);
+                      border-radius: 4px;
+                      margin: 6px;
+                      width: 105px;
+                    "
+                  >
+                    {{ data.status }}
+                  </button>
+                  <button
+                    nz-button
+                    nz-dropdown
+                    [nzDropdownMenu]="postActions"
+                    style="border-radius: 4px; margin: 6px; width: 27px; display: flex; justify-content: center; align-items: center;"
+                  >
+                  <i nz-icon nzType="more" nzTheme="outline"></i>
+                  </button>
+                  <nz-dropdown-menu #postActions="nzDropdownMenu">
+                    <ul nz-menu>
+                      <li nz-menu-item>
+                        <span>Add Tag</span>
+                      </li>
+                      <li nz-menu-item>
+                        <span>Delete</span>
+                      </li>
+                    </ul>
+                  </nz-dropdown-menu>
                 </div>
               </div>
             </td>
