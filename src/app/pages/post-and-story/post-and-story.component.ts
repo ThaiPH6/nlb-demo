@@ -8,6 +8,7 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 })
 export class PostAndStoryComponent implements OnInit {
   size: NzButtonSize = 'large';
+  currentPage = 1;
   checked = false;
   buttons: Array<string> = ['Published', 'Scheduled', 'Drafts'];
 
@@ -15,22 +16,37 @@ export class PostAndStoryComponent implements OnInit {
     {
       label: 'Title',
       icon: false,
+      width: '700px'
     },
     {
       label: 'Date published',
       icon: false,
+      width: '230px'
     },
     {
       label: 'Reach',
       icon: true,
+      width: '250px'
     },
     {
       label: 'Engagements',
       icon: true,
+      width: '200px'
     },
     {
       label: 'Likes and reactions',
       icon: true,
+      width: '200px'
+    },
+    {
+      label: 'Comment',
+      icon: true,
+      width: '200px'
+    },
+    {
+      label: 'Share',
+      icon: true,
+      width: '200px'
     },
   ];
 
@@ -42,7 +58,9 @@ export class PostAndStoryComponent implements OnInit {
       reach: '243',
       engagements: '23',
       likeAndReactions: '63',
-      status: 'Boost post'
+      status: 'Boost post',
+      comment: '2',
+      share: '524',
     },
     {
       key: '2',
@@ -51,7 +69,9 @@ export class PostAndStoryComponent implements OnInit {
       reach: '243',
       engagements: '23',
       likeAndReactions: '63',
-      status: 'Boost post'
+      status: 'Boost post',
+      comment: '2',
+      share: '524',
     },
     {
       key: '3',
@@ -60,7 +80,9 @@ export class PostAndStoryComponent implements OnInit {
       reach: '243',
       engagements: '23',
       likeAndReactions: '63',
-      status: 'Boost post'
+      status: 'Boost post',
+      comment: '2',
+      share: '524',
     },
     {
       key: '4',
@@ -69,7 +91,9 @@ export class PostAndStoryComponent implements OnInit {
       reach: '243',
       engagements: '23',
       likeAndReactions: '63',
-      status: 'Insight'
+      status: 'Insight',
+      comment: '2',
+      share: '524',
     },
   ];
 
