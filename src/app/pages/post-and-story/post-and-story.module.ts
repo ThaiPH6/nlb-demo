@@ -14,26 +14,28 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
-import {NzPaginationModule} from "ng-zorro-antd/pagination";
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
   declarations: [PostAndStoryComponent],
-    imports: [
-        CommonModule,
-        PostAndStoryRoutingModule,
-        SharedModule,
-        NzRadioModule,
-        FormsModule,
-        NzButtonModule,
-        NzGridModule,
-        NzSelectModule,
-        NzTagModule,
-        NzIconModule,
-        NzTableModule,
-        NzInputModule,
-        NzProgressModule,
-        NzAvatarModule,
-        NzPaginationModule,
-    ],
+  imports: [
+    CommonModule,
+    PostAndStoryRoutingModule,
+    SharedModule,
+    NzRadioModule,
+    FormsModule,
+    NzButtonModule,
+    NzGridModule,
+    NzSelectModule,
+    NzTagModule,
+    NzIconModule,
+    NzTableModule,
+    NzInputModule,
+    NzProgressModule,
+    NzAvatarModule,
+    NzPaginationModule,
+    NzPopoverModule,
+  ],
 })
 export class PostAndStoryModule {}

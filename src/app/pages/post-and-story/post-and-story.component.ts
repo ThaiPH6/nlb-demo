@@ -11,49 +11,61 @@ export class PostAndStoryComponent implements OnInit {
   currentPage = 1;
   checked = false;
   buttons: Array<string> = ['Published', 'Scheduled', 'Drafts'];
+  addTagClicked: boolean = false;
+  inputColor: any;
+
+  visible: boolean = false;
+
+  clickMe(): void {
+    this.visible = false;
+  }
+
+  change(value: boolean): void {
+    console.log(value);
+  }
 
   dataTitle: any = [
     {
       label: 'Title',
       icon: false,
-      width: '700px'
+      width: '700px',
     },
     {
       label: 'Date published',
       icon: false,
-      width: '230px'
+      width: '230px',
     },
     {
       label: 'Reach',
       icon: true,
-      width: '250px'
+      width: '250px',
     },
     {
       label: 'Engagements',
       icon: true,
-      width: '200px'
+      width: '200px',
     },
     {
       label: 'Likes and reactions',
       icon: true,
-      width: '200px'
+      width: '200px',
     },
     {
       label: 'Comment',
       icon: true,
-      width: '200px'
+      width: '200px',
     },
     {
       label: 'Share',
       icon: true,
-      width: '200px'
+      width: '200px',
     },
   ];
 
   listOfData: any = [
     {
       key: '1',
-      title: 'Double room...only 4xx000 VND/ night',
+      title: 'Double room...only 4xx000 VND/ night 1',
       datePublished: Date.now(),
       reach: '243',
       engagements: '23',
@@ -64,7 +76,7 @@ export class PostAndStoryComponent implements OnInit {
     },
     {
       key: '2',
-      title: 'Double room...only 4xx000 VND/ night',
+      title: 'Double room...only 4xx000 VND/ night 2',
       datePublished: Date.now(),
       reach: '243',
       engagements: '23',
@@ -75,7 +87,7 @@ export class PostAndStoryComponent implements OnInit {
     },
     {
       key: '3',
-      title: 'Double room...only 4xx000 VND/ night',
+      title: 'Double room...only 4xx000 VND/ night 3',
       datePublished: Date.now(),
       reach: '243',
       engagements: '23',
@@ -86,7 +98,7 @@ export class PostAndStoryComponent implements OnInit {
     },
     {
       key: '4',
-      title: 'Double room...only 4xx000 VND/ night',
+      title: 'Double room...only 4xx000 VND/ night 4',
       datePublished: Date.now(),
       reach: '243',
       engagements: '23',
@@ -128,10 +140,18 @@ export class PostAndStoryComponent implements OnInit {
   }
 
   handleInputConfirm(): void {
+    this.inputColor = document.getElementById('color');
     if (this.inputValue) {
-      this.tags.push({title: this.inputValue, color: '#a3daff'});
+      this.tags.push({ title: this.inputValue, color: this.inputColor.value });
     }
     this.inputValue = '';
     this.inputVisible = false;
   }
+
+  onClickAddTag(): void {
+    this.addTagClicked = true;
+    console.log('add tag clicked');
+  }
+
+  
 }
