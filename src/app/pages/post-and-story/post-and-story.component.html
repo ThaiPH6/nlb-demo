@@ -76,11 +76,11 @@
       </div>
     </div>
     <div nz-col nzSpan="24">
-      <nz-table #rowSelectionTable #basicTable [nzData]="listOfData">
+      <nz-table #rowSelectionTable #basicTable [nzFrontPagination]="false" [nzData]="listOfData" [nzScroll]="{x: 'auto'}">
         <thead class="thead-container">
           <tr>
             <th></th>
-            <th class="thead-title" *ngFor="let tableTitle of dataTitle">
+            <th class="thead-title" *ngFor="let tableTitle of dataTitle" [nzWidth]="tableTitle.width">
               <ng-container *ngIf="!tableTitle.icon; else noIcon">
                 <span>{{ tableTitle.label }}</span>
               </ng-container>
@@ -161,11 +161,11 @@
                 </div>
               </div>
             </td>
-            <td>{{ data.datePublished | date : "dd MMMM hh:mm" }}</td>
+            <td >{{ data.datePublished | date : "dd MMMM hh:mm" }}</td>
             <td>
               <div class="reach">
                 {{ data.reach }}
-                <p style="margin-bottom: 0px">Account Center</p>
+                <p style="margin-bottom: 0">Account Center</p>
                 <nz-progress
                   [nzPercent]="10"
                   nzSize="small"
@@ -176,7 +176,7 @@
             <td>
               <div class="engagements">
                 {{ data.engagements }}
-                <p style="margin-bottom: 0px">Engagements</p>
+                <p style="margin-bottom: 0">Engagements</p>
                 <nz-progress
                   [nzPercent]="10"
                   nzSize="small"
@@ -187,7 +187,29 @@
             <td>
               <div class="reactions">
                 {{ data.likeAndReactions }}
-                <p style="margin-bottom: 0px">Reactions</p>
+                <p style="margin-bottom: 0">Reactions</p>
+                <nz-progress
+                  [nzPercent]="90"
+                  nzSize="small"
+                  [nzShowInfo]="false"
+                ></nz-progress>
+              </div>
+            </td>
+            <td>
+              <div class="comment">
+                {{ data.comment }}
+                <p style="margin-bottom: 0">Comment</p>
+                <nz-progress
+                  [nzPercent]="10"
+                  nzSize="small"
+                  [nzShowInfo]="false"
+                ></nz-progress>
+              </div>
+            </td>
+            <td>
+              <div class="share">
+                {{ data.share }}
+                <p style="margin-bottom: 0">Share</p>
                 <nz-progress
                   [nzPercent]="90"
                   nzSize="small"
@@ -198,6 +220,15 @@
           </tr>
         </tbody>
       </nz-table>
+      <div nz-row nzJustify="center" nzAlign="middle">
+        <div colspan="24">
+      <nz-pagination
+        [(nzPageIndex)]="currentPage"
+        [nzTotal]="50"
+        [nzSize]="'small'"
+      ></nz-pagination>
+        </div>
+      </div>
     </div>
   </div>
 </ng-container>
