@@ -16,14 +16,6 @@ export class PostAndStoryComponent implements OnInit {
 
   visible: boolean = false;
 
-  clickMe(): void {
-    this.visible = false;
-  }
-
-  change(value: boolean): void {
-    console.log(value);
-  }
-
   dataTitle: any = [
     {
       label: 'Title',
@@ -140,6 +132,7 @@ export class PostAndStoryComponent implements OnInit {
   }
 
   handleInputConfirm(): void {
+    this.visible = false;
     this.inputColor = document.getElementById('color');
     if (this.inputValue) {
       this.tags.push({ title: this.inputValue, color: this.inputColor.value });
@@ -148,9 +141,12 @@ export class PostAndStoryComponent implements OnInit {
     this.inputVisible = false;
   }
 
-  onClickAddTag(): void {
-    this.addTagClicked = true;
-    console.log('add tag clicked');
+  onClickCancelPopover(): void {
+    this.visible = false;
+  }
+
+  change(value: boolean): void {
+    console.log(value);
   }
 
   

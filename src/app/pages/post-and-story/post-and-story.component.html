@@ -82,44 +82,28 @@
                 (nzPopoverVisibleChange)="change($event)"
                 nzPopoverTrigger="click"
                 [nzPopoverContent]="contentTemplate"
-                style="
-                  height: 23px;
-                  display: flex;
-                  width: 23px;
-                  justify-content: center;
-                "
               >
                 <span nz-icon nzType="plus"></span>
               </button>
               <ng-template #contentTemplate>
                 <div class="input">
                   <input
+                    class="input-popover"
                     #inputElement
                     nz-input
                     type="text"
                     [(ngModel)]="inputValue"
-                    style="width: 143px; height: 27px"
                     (blur)="handleInputConfirm()"
                     (keydown.enter)="handleInputConfirm()"
                   />
-                  <input
-                    style="margin-left: 13px; margin-bottom: 15px"
-                    type="color"
-                    id="color"
-                  />
+                  <input style="margin-left: 10px" type="color" id="color" />
                 </div>
 
-                <div
-                  style="display: flex; justify-content: space-between"
-                  class="row button"
-                >
-                  <button
-                    style="width: 90px; border-radius: 4px; border: none"
-                    (click)="clickMe()"
-                  >
+                <div class="button-container">
+                  <button class="btn-cancel" (click)="onClickCancelPopover()">
                     Cancel
                   </button>
-                  <button style="width: 90px; background-color: #5CB85C; border: none; border-radius: 4px;">
+                  <button class="btn-ok" (click)="handleInputConfirm()">
                     OK
                   </button>
                 </div>
