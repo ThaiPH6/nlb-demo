@@ -25,6 +25,13 @@ const routes: Routes = [
             (m) => m.PostAndStoryModule
           ),
       },
+      {
+        path: 'campaigns',
+        loadChildren: () =>
+          import('./pages/campaigns/campaigns.module').then(
+            (m) => m.CampaignsModule
+          )
+      }
     ],
   },
 ];
