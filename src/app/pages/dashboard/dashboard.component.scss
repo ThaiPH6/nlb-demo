@@ -1,0 +1,30 @@
+.dashboard-container {
+  background: #FFFFFF;
+}
+
+.chart-container {
+  padding: 30px;
+
+  .chart-text {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    color: #192A3E;
+    letter-spacing: 0.01em;
+  }
+  .deals-container {
+    margin-top: 30px;
+    border: 1px #E5EBEA solid;
+  }
+}
+
+.task-container {
+  padding: 10px 30px
+}
+
+.card {
+  border: 1px solid #E5EBEA;
+  /* hover */
+
+  box-shadow: 0px 24px 35px rgba(0, 0, 0, 0.12);
+}

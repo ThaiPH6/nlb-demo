@@ -1,0 +1,37 @@
+<ng-container>
+  <div  [nzGutter]="[0, 24]"  nz-row>
+    <div nz-col nzSpan="24" class="dashboard-container">
+      <div nz-row [nzGutter]="[19, 16]" class="chart-container">
+            <div nz-col [nzSpan]="12">
+              <nz-card nzTitle="Deals" [nzExtra]="extraTemplate" class="card">
+                <p>Deals</p>
+              </nz-card>
+              <ng-template #extraTemplate>
+                <p>Show: <a>Monthly</a></p>
+              </ng-template>
+            </div>
+            <div nz-col [nzSpan]="12" >
+              <nz-card nzTitle="Tasks" [nzExtra]="extraTemplate2" class="card">
+                <p>Card content</p>
+              </nz-card>
+              <ng-template #extraTemplate2>
+                <p>Show: <a>This Month</a></p>
+              </ng-template>
+            </div>
+      </div>
+      <div nz-row [nzGutter]="[19, 0]" class="task-container">
+        <div nz-col [nzSpan]="24">
+          <nz-card  nzTitle="8 task completed out of 10" [nzExtra]="extraTemplate3">
+            <p>Deals</p>
+          </nz-card>
+          <ng-template #extraTemplate3>
+            <p>Show: <a>This week</a></p>
+            <div nz-col [nzSpan]="24">
+              bar
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
