@@ -1,37 +1,193 @@
-<ng-container>
+<div>
   <div  [nzGutter]="[0, 24]"  nz-row>
     <div nz-col nzSpan="24" class="dashboard-container">
       <div nz-row [nzGutter]="[19, 16]" class="chart-container">
             <div nz-col [nzSpan]="12">
               <nz-card nzTitle="Deals" [nzExtra]="extraTemplate" class="card">
-                <p>Deals</p>
+                <div>
+                  <canvas id="myChart"></canvas>
+                </div>
               </nz-card>
               <ng-template #extraTemplate>
-                <p>Show: <a>Monthly</a></p>
+                <span class="chart-text">Show: <a>Monthly</a><span><img alt="" src="assets/icons/caret-down.svg"/></span></span>
               </ng-template>
             </div>
             <div nz-col [nzSpan]="12" >
               <nz-card nzTitle="Tasks" [nzExtra]="extraTemplate2" class="card">
-                <p>Card content</p>
+                <div nz-row>
+                  <div nz-col nzSpan="15">
+                <nz-progress [nzStrokeColor]="{ '0%': '#3253AB', '70%': '#3253AB', '71%': '#FFAD4F', '90%': '#FFAD4F', '91%': '#F6686E' , '100%': '#F6686E'}" [nzWidth]="367" [nzPercent]="100" nzType="circle" [nzStatus]="'active'"></nz-progress>
+                  </div>
+                  <div class="pie-chart-info" nz-col nzSpan="9">
+                    <span class="pie-chart-info-content"><img alt="" src="assets/icons/chart-active.svg"/><span class="pie-chart-text">Active</span></span>
+                    <span class="pie-chart-info-content"><img alt="" src="assets/icons/chart-completed.svg"/><span class="pie-chart-text">Completed</span></span>
+                    <span class="pie-chart-info-content"><img alt="" src="assets/icons/chart-ended.svg"/><span class="pie-chart-text">Ended</span></span>
+                  </div>
+                </div>
               </nz-card>
               <ng-template #extraTemplate2>
-                <p>Show: <a>This Month</a></p>
+                <span class="chart-text">Show:<a>This Month</a><span><img alt="" src="assets/icons/caret-down.svg"/></span></span>
               </ng-template>
             </div>
       </div>
       <div nz-row [nzGutter]="[19, 0]" class="task-container">
-        <div nz-col [nzSpan]="24">
-          <nz-card  nzTitle="8 task completed out of 10" [nzExtra]="extraTemplate3">
-            <p>Deals</p>
-          </nz-card>
-          <ng-template #extraTemplate3>
-            <p>Show: <a>This week</a></p>
-            <div nz-col [nzSpan]="24">
-              bar
+        <nz-col  [nzSpan]="24">
+          <div class="task-content" nz-row [nzGutter]="[0, 24]" nzJustify="space-between">
+            <nz-col>
+              <span class="task-text">8 task completed out of 10</span>
+            </nz-col>
+            <nz-col>
+              <span class="chart-text">Show: <a>This Week</a><span><img alt="" src="assets/icons/caret-down.svg"/></span></span>
+            </nz-col>
+            <nz-col  [nzSpan]="24">
+              <nz-progress [nzPercent]="90" [nzShowInfo]="false" [nzStrokeColor]="{ '0%': '#2ED47A', '100%': '#2ED47A' }"></nz-progress>
+            </nz-col>
+            <nz-col [nzSpan]="24">
+              <nz-row nzJustify="center">
+              <nz-col [nzSpan]="24">
+                <h2>23 December, Sunday</h2>
+              </nz-col>
+                <nz-col [nzSpan]="24">
+                  <nz-row style="margin-top: 20px" nzJustify="space-around">
+                  <nz-col *ngFor="let item of calendar">
+                    <nz-statistic  [nzValueStyle]="item.monthDayHover ? calendarStyleHover :calendarStyle" [nzValue]="item.monthDay" [nzTitle]="item.weekDay"></nz-statistic>
+                  </nz-col>
+                  </nz-row>
+                </nz-col>
+              </nz-row>
+            </nz-col>
+            <nz-col class="task-info-container" [nzSpan]="24">
+              <nz-row nz-row [nzGutter]="[0, 24]">
+              <nz-col class="task-info" [nzSpan]="24">
+                <nz-row nzJustify="space-between" style="padding: 10px 20px" [nzGutter]="[0, 20]">
+                  <nz-col>
+                <span class="task-info-text">Send benefit review by Sunday</span>
+                  </nz-col>
+                  <nz-col>
+                    <span class="task-info-second-text">Reminder</span>
+                  </nz-col>
+                <nz-col [nzSpan]="24">
+                  <span class="due-date">Due Date: </span><span class="date">December 23,2018</span>
+                </nz-col>
+                </nz-row>
+                <nz-row nzJustify="space-between" style="padding: 10px 20px" [nzGutter]="[0, 20]">
+                  <nz-col style="display: flex; gap: 10px">
+                    <span><nz-avatar nzSize="small" nzIcon="user"></nz-avatar></span>
+                  <span class="name">George Fields</span>
+                  </nz-col>
+                  <nz-col>
+                    <span class="status">Completed</span>
+                  </nz-col>
+                </nz-row>
+              </nz-col>
+                <nz-col class="task-info" [nzSpan]="24">
+                  <nz-row nzJustify="space-between" style="padding: 10px 20px" [nzGutter]="[0, 20]">
+                    <nz-col>
+                      <span class="task-info-text">Invite to office meet-up</span>
+                    </nz-col>
+                    <nz-col>
+                      <span class="task-info-second-text">Call</span>
+                    </nz-col>
+                    <nz-col [nzSpan]="24">
+                      <span class="due-date">Due Date: </span><span class="date">December 23,2018</span>
+                    </nz-col>
+                  </nz-row>
+                  <nz-row nzJustify="space-between" nzAlign="middle" style="padding: 10px 20px" [nzGutter]="[0, 20]">
+                    <nz-col style="display: flex; gap: 10px" nzSpan="13">
+                      <span><nz-avatar nzSize="small" nzIcon="user"></nz-avatar></span>
+                      <span class="name">Rebecca Moore</span>
+                    </nz-col>
+                    <nz-col nzSpan="7">
+                      <span nz-icon nzType="edit" nzTheme="outline"></span>
+                    </nz-col>
+                    <nz-col nzSpan="4">
+                      <nz-row nzJustify="space-between" nzAlign="middle">
+                        <div style="display: flex; gap: 10px;">
+                        <img alt="" src="assets/icons/chart-active.svg"/>
+                        <img alt="" src="assets/icons/chart-completed.svg"/>
+                        </div>
+                        <span nz-icon nzType="delete" nzTheme="outline"></span>
+                      <span class="status-error">Ended</span>
+                      </nz-row>
+                    </nz-col>
+                  </nz-row>
+                </nz-col>
+                <nz-col class="task-info" [nzSpan]="24">
+                  <nz-row nzJustify="space-between" style="padding: 10px 20px" [nzGutter]="[0, 20]">
+                    <nz-col>
+                      <span class="task-info-text">Office meet-up</span>
+                    </nz-col>
+                    <nz-col>
+                      <span class="task-info-second-text">Event</span>
+                    </nz-col>
+                    <nz-col [nzSpan]="24">
+                      <span class="due-date">Due Date: </span><span class="date">December 23,2018</span>
+                    </nz-col>
+                  </nz-row>
+                  <nz-row nzJustify="space-between" style="padding: 10px 20px" [nzGutter]="[0, 20]">
+                    <nz-col style="display: flex; gap: 10px">
+                      <span><nz-avatar nzSize="small" nzIcon="user"></nz-avatar></span>
+                      <span class="name">Lindsey Stroud</span>
+                    </nz-col>
+                    <nz-col>
+                      <span class="status">Completed</span>
+                    </nz-col>
+                  </nz-row>
+                </nz-col>
+              </nz-row>
+            </nz-col>
+            <nz-col [nzSpan]="24">
+              <nz-row nzJustify="center">
+                <h3 style="color: #109CF1; font-weight: 600; font-size: 13px; cursor: pointer">Show More</h3>
+              </nz-row>
+            </nz-col>
+          </div>
+        </nz-col>
+      </div>
+      <div class="table-container" >
+        <nz-row nzJustify="space-between" [nzGutter]="[0, 24]">
+          <nz-col>
+            <h3>List of link</h3>
+          </nz-col>
+          <nz-col [nzSpan]="6">
+            <nz-input-group [nzSuffix]="suffixIconSearch">
+              <input type="text" nz-input placeholder="search by campaign ID, campaign title, source, medium,..." />
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+              <span nz-icon nzType="search"></span>
+            </ng-template>
+          </nz-col>
+          <nz-col [nzSpan]="24">
+            <nz-table #basicTable [nzData]="listOfData" [nzFrontPagination]="false" [nzScroll]="{x: 'auto'}">
+              <thead>
+              <tr>
+                <th *ngFor="let title of tableTitle">{{title}}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{data.linkId}}</td>
+                <td>{{data.campaignId}}</td>
+                <td>{{data.source}}</td>
+                <td>{{data.medium}}</td>
+                <td><a>{{data.originalLink}}</a></td>
+                <td style="display:flex; gap: 10px; align-items: center"><a>{{data.shortenLink}}</a><span><img alt="" src="assets/icons/link.svg"></span></td>
+                <td>{{data.clicks}}</td>
+              </tr>
+              </tbody>
+            </nz-table>
+            <div nz-row nzJustify="center" nzAlign="middle">
+              <div colspan="24">
+                <nz-pagination
+                  [nzPageIndex]="1"
+                  [nzTotal]="50"
+                  [nzSize]="'small'"
+                ></nz-pagination>
+              </div>
             </div>
-          </ng-template>
-        </div>
+          </nz-col>
+        </nz-row>
       </div>
     </div>
   </div>
-</ng-container>
+</div>

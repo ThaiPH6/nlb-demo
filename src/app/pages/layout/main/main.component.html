@@ -108,9 +108,6 @@
         </div>
       </div>
     </nz-header>
-    <ng-container>
-
-    </ng-container>
     <ng-container *ngIf="currentRoute === dashboardRoute; else normalRoute">
       <router-outlet (activate)='onActivate()'></router-outlet>
     </ng-container>
