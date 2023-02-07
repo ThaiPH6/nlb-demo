@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { Post } from './create-post/media.model';
+import { PostStoryService } from './post-story.service';
 
 @Component({
   selector: 'app-post-and-story',
@@ -50,52 +52,7 @@ export class PostAndStoryComponent implements OnInit {
     },
   ];
 
-  listOfData: any = [
-    {
-      key: '1',
-      title: 'Double room...only 4xx000 VND/ night',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Boost post',
-      comment: '2',
-      share: '524',
-    },
-    {
-      key: '2',
-      title: 'Double room...only 4xx000 VND/ night',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Boost post',
-      comment: '2',
-      share: '524',
-    },
-    {
-      key: '3',
-      title: 'Double room...only 4xx000 VND/ night',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Boost post',
-      comment: '2',
-      share: '524',
-    },
-    {
-      key: '4',
-      title: 'Double room...only 4xx000 VND/ night',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Insight',
-      comment: '2',
-      share: '524',
-    },
-  ];
+  listOfData: Post[] = [];
 
   inputVisible = false;
   inputValue = '';
@@ -107,9 +64,13 @@ export class PostAndStoryComponent implements OnInit {
     { title: 'Art', color: '#ffb8b8' },
     { title: 'Education', color: '#a3daff' },
   ];
-  constructor() {}
+  constructor(
+    private postService: PostStoryService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listOfData = this.postService.listOfData
+  }
 
   handleClose(removedTag: {}): void {
     this.tags = this.tags.filter((tag) => tag !== removedTag);

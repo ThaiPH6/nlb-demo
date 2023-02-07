@@ -106,15 +106,13 @@
                       {{ data.title }}
                     </div>
                     <div nz-col nzSpan="20">
-                      <nz-tag [nzColor]="'#ecb5ff'">House</nz-tag>
-                      <nz-tag [nzColor]="'#a7ed8e'">Music</nz-tag>
-                      <nz-tag [nzColor]="'#ffb8b8'">Art</nz-tag>
+                      <nz-tag *ngFor="let tag of data.tags" [nzColor]="tag.color">{{tag.title}}</nz-tag>
                     </div>
                   </div>
                 </div>
                 <div nz-col nzSpan="12" class="action">
                   <button
-                    *ngIf="data.status === 'Boost post'"
+                    *ngIf="data.isBoostPost === true"
                     nz-button
                     style="
                       background: rgba(255, 184, 184, 0.4);
@@ -123,10 +121,10 @@
                       width: 105px;
                     "
                   >
-                    {{ data.status }}
+                    Boost post
                   </button>
                   <button
-                    *ngIf="data.status === 'Insight'"
+                    *ngIf="data.isBoostPost === false"
                     nz-button
                     style="
                       background: rgba(163, 218, 255, 0.4);
@@ -135,7 +133,7 @@
                       width: 105px;
                     "
                   >
-                    {{ data.status }}
+                    Insight
                   </button>
                   <button
                     nz-button
