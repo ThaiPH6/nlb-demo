@@ -45,6 +45,7 @@
           <div nz-row nzJustify="space-between">
             <div nz-row nzJustify="center" nzAlign="middle">
               <nz-tag
+                style="color: black"
                 *ngFor="let tag of tags; let i = index"
                 [nzMode]="'closeable'"
                 (nzOnClose)="handleClose(tag)"
@@ -109,9 +110,6 @@
                 </div>
               </ng-template>
             </div>
-            <div>
-              <button nz-button nzType="default">View all</button>
-            </div>
           </div>
         </div>
       </div>
@@ -160,15 +158,18 @@
                       {{ data.title }}
                     </div>
                     <div nz-col nzSpan="20">
-                      <nz-tag [nzColor]="'#ecb5ff'">House</nz-tag>
-                      <nz-tag [nzColor]="'#a7ed8e'">Music</nz-tag>
-                      <nz-tag [nzColor]="'#ffb8b8'">Art</nz-tag>
+                      <nz-tag
+                        style="color: black"
+                        *ngFor="let tag of data.tags"
+                        [nzColor]="tag.color"
+                        >{{ tag.title }}</nz-tag
+                      >
                     </div>
                   </div>
                 </div>
                 <div nz-col nzSpan="12" class="action">
                   <button
-                    *ngIf="data.status === 'Boost post'"
+                    *ngIf="data.isBoostPost === true"
                     nz-button
                     style="
                       background: rgba(255, 184, 184, 0.4);
@@ -177,10 +178,10 @@
                       width: 105px;
                     "
                   >
-                    {{ data.status }}
+                    Boost post
                   </button>
                   <button
-                    *ngIf="data.status === 'Insight'"
+                    *ngIf="data.isBoostPost === false"
                     nz-button
                     style="
                       background: rgba(163, 218, 255, 0.4);
@@ -189,7 +190,7 @@
                       width: 105px;
                     "
                   >
-                    {{ data.status }}
+                    Insight
                   </button>
                   <button
                     nz-button
@@ -226,7 +227,7 @@
                       >
                         <span>Add Tag</span>
                       </li>
-                    
+
                       <li nz-menu-item>
                         <span>Delete</span>
                       </li>
@@ -307,13 +308,14 @@
   </div>
 </ng-container>
 
-
 <ng-template #addTagTemplate>
   <nz-tag
+    style="color: black;"
     *ngFor="let tag of tags; let i = index"
     [nzMode]="'closeable'"
-    (nzOnClose)="handleClose(tag)"
+    (nzOnClose)="handleCloseAddTags(tag)"
     [nzColor]="tag.color"
+    (keydown.enter)="handleInputConfirm()"
   >
     {{ sliceTagName(tag.title) }}
   </nz-tag>

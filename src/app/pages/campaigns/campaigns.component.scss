@@ -1,0 +1,39 @@
+.button {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  color: #000000;
+  &:hover {
+    background: rgba(0, 119, 192, 0.12);
+    color: #1492E0;
+  }
+}
+
+.tag {
+  display: grid;
+  place-content: center;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 19px;
+  color: #252525;
+}
+
+.tag-container {
+  background: #F5F5F5;
+  border-radius: 3px;
+  padding: 5px 0;
+  gap: 10px;
+}
+
+.text-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 67px;
+  height: 28px;
+  color: #2C2C2C;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+}
+

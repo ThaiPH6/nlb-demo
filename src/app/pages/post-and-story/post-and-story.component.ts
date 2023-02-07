@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { Post } from './create-post/media.model';
+import { PostStoryService } from './post-story.service';
 
 @Component({
   selector: 'app-post-and-story',
@@ -56,52 +58,7 @@ export class PostAndStoryComponent implements OnInit {
     },
   ];
 
-  listOfData: any = [
-    {
-      key: '1',
-      title: 'Double room...only 4xx000 VND/ night 1',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Boost post',
-      comment: '2',
-      share: '524',
-    },
-    {
-      key: '2',
-      title: 'Double room...only 4xx000 VND/ night 2',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Boost post',
-      comment: '2',
-      share: '524',
-    },
-    {
-      key: '3',
-      title: 'Double room...only 4xx000 VND/ night 3',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Boost post',
-      comment: '2',
-      share: '524',
-    },
-    {
-      key: '4',
-      title: 'Double room...only 4xx000 VND/ night 4',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Insight',
-      comment: '2',
-      share: '524',
-    },
-  ];
+  listOfData: Post[] = [];
 
   inputVisible = false;
   inputValue = '';
@@ -113,12 +70,29 @@ export class PostAndStoryComponent implements OnInit {
     { title: 'Art', color: '#ffb8b8' },
     { title: 'Education', color: '#a3daff' },
   ];
-  constructor() {}
 
-  ngOnInit(): void {}
+  tagsToAdd = [
+    { title: 'House', color: '#ecb5ff' },
+    { title: 'Music', color: '#a7ed8e' },
+    { title: 'Art', color: '#ffb8b8' },
+    { title: 'Education', color: '#a3daff' },
+  ];
+
+
+  constructor(
+    private postService: PostStoryService
+  ) {}
+
+  ngOnInit(): void {
+    this.listOfData = this.postService.listOfData
+  }
 
   handleClose(removedTag: {}): void {
     this.tags = this.tags.filter((tag) => tag !== removedTag);
+  }
+  
+  handleCloseAddTags(removedTag: {}): void {
+    this.tagsToAdd = this.tagsToAdd.filter((tag) => tag !== removedTag);
   }
 
   sliceTagName(tag: string): string {
@@ -138,6 +112,7 @@ export class PostAndStoryComponent implements OnInit {
     this.inputColor = document.getElementById('color');
     if (this.inputValue) {
       this.tags.push({ title: this.inputValue, color: this.inputColor.value });
+      this.tagsToAdd.push({ title: this.inputValue, color: this.inputColor.value });
     }
     this.inputValue = '';
     this.inputVisible = false;
