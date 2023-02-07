@@ -34,10 +34,11 @@
                   <nz-option
                     *ngFor="let option of listOfOptionAddress"
                     [nzLabel]="option.label"
-                    [nzValue]="option.value"
+                    [nzValue]="option"
                   >
                     <!-- <span nz-icon [nzType]="option.logo"></span> -->
                   </nz-option>
+                  <nz-option *ngFor="let option of defaultOptionPosto" [nzLabel]="option.label" [nzValue]="option" nzHide></nz-option>
                 </nz-select>
                 <ng-template #tagPlaceHolder let-selectedList
                   >and {{ selectedList.length }} more selected</ng-template
@@ -400,7 +401,19 @@
           align-items: center;
         "
       >
-        <h2 style="margin-bottom: 0px">Facebook News Feed preview</h2>
+        <!-- <h2 style="margin-bottom: 0px">Facebook News Feed preview</h2> -->
+        <h2 nz-dropdown [nzDropdownMenu]="listPostTo">
+          Facebook News Feed preview
+          <span nz-icon nzType="down"></span>
+        </h2>
+        <nz-dropdown-menu #listPostTo="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item *ngFor="let preview of postTo">{{preview.previewLabel}}</li>
+          </ul>
+        </nz-dropdown-menu>
+        <!-- <nz-select class="preview-name" ngModel="Facebook News Feed preview">
+          <nz-option *ngFor="let preview of postTo" [nzValue]="preview" [nzLabel]="preview.previewLabel"></nz-option>
+        </nz-select> -->
         <div class="mode-group">
           <button
             style="
@@ -429,7 +442,14 @@
           [nzActions]="[actionsInPreview]"
         >
           <div class="post-content">
-            {{status}}
+            <div class="content">
+              {{status}}
+            </div>
+            <div class="post-image">
+              <ng-container *ngFor="let img of listOfPhotos">
+                <img style="height: 250px; width: 100%;" [src]="img.image">
+              </ng-container>
+            </div>
           </div>
         </nz-card>
         <ng-template #cardTitle>

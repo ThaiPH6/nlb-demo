@@ -27,31 +27,43 @@ export class CreatePost implements OnInit {
       label: 'Facebook Post',
       value: 'Facebook Post',
       logo: 'facebook',
+      previewLabel: 'Facebook News Feed preview',
+      selected: true
     },
     {
       label: 'Instagram Post',
       value: 'Instagram Post',
       logo: 'instagram',
+      previewLabel: 'Instagram News Feed preview',
+      selected: false
     },
     {
       label: 'Instagram Story',
       value: 'Instagram Story',
       logo: 'instagram',
+      previewLabel: 'Instagram Story preview',
+      selected: false
     },
     {
       label: 'Telegram',
       value: 'Telegram',
       logo: 'wechat',
+      previewLabel: 'Telegram News Feed preview',
+      selected: false
     },
     {
       label: 'Tiktok',
       value: 'Tiktok',
       logo: 'tiktok',
+      previewLabel: 'Tiktok News Feed preview',
+      selected: false
     },
     {
       label: 'Youtube',
       value: 'Youtube',
       logo: 'youtube',
+      previewLabel: 'Youtube News Feed preview',
+      selected: false
     },
   ];
 
@@ -85,7 +97,16 @@ export class CreatePost implements OnInit {
   scrollX: string | null = null;
   scrollY: string | null = null;
 
-  postTo: string = '';
+  postTo = [{
+    label: 'Facebook Post',
+    value: 'Facebook Post',
+    logo: 'facebook',
+    previewLabel: 'Facebook News Feed preview',
+    selected: true
+  }];
+
+  defaultOptionPosto = [...this.postTo];
+  
   privacy: string = '';
   status: string = '';
   isBoostPost: boolean = true;
@@ -161,11 +182,7 @@ export class CreatePost implements OnInit {
         imageUrl = this._sanitizer.bypassSecurityTrustResourceUrl(
           `${reader.result}`
         );
-        this.listOfPhotos = [...this.listOfPhotos, { image: imageUrl, size: '1425x838' }]
-        //this.listOfPhotos.push({ image: imageUrl, size: '123133' });
-        console.log('aaaa', file);
-        console.log('alooo', reader.result);
-        console.log(this.listOfPhotos);
+        this.listOfPhotos = [...this.listOfPhotos, { image: imageUrl, size: '1425x838' }];
 
         //reader.readAsDataURL(file);
         // this.registrationForm.patchValue({
