@@ -30,7 +30,7 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    LayoutModule
+    LayoutModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
