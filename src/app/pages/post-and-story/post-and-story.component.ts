@@ -17,7 +17,7 @@ export class PostAndStoryComponent implements OnInit {
   inputColor: any;
 
   visibleCreateTagPopover: boolean = false;
-  visibleCreateAddPopover: boolean = false;
+  visibleAddTagPopover: boolean = false;
 
 
   dataTitle: any = [
@@ -84,7 +84,14 @@ export class PostAndStoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listOfData = this.postService.listOfData
+    this.listOfData = this.postService.listOfData.sort( (a,b) => {
+      return b.datePublished - a.datePublished
+    })
+    this.apiGetListData()
+  }
+
+  apiGetListData() {
+    this.postService.getListPost().subscribe(res => this.listOfData = res)
   }
 
   handleClose(removedTag: {}): void {
@@ -131,6 +138,11 @@ export class PostAndStoryComponent implements OnInit {
   }
 
   onClickAddTag(index : any){
-    console.log(index);
+    this.tagsToAdd = [...this.tags];
+  }
+
+  handleAddTags(postIndex : number) {
+    this.listOfData[postIndex].tags = this.tagsToAdd;
+    
   }
 }

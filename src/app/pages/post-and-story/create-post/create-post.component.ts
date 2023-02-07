@@ -8,7 +8,7 @@ import {
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzButtonSize } from 'ng-zorro-antd/button';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Media } from './media.model';
+import { Media, Tag } from './media.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { PostStoryService } from '../post-story.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -25,42 +25,42 @@ export class CreatePost implements OnInit {
   listOfOptionAddress = [
     {
       label: 'Facebook Post',
-      value: 'Facebook Post',
+      value: 'Facebook News Feed preview',
       logo: 'facebook',
       previewLabel: 'Facebook News Feed preview',
       selected: true
     },
     {
       label: 'Instagram Post',
-      value: 'Instagram Post',
+      value: 'Instagram News Feed preview',
       logo: 'instagram',
       previewLabel: 'Instagram News Feed preview',
       selected: false
     },
     {
       label: 'Instagram Story',
-      value: 'Instagram Story',
+      value: 'Instagram Story preview',
       logo: 'instagram',
       previewLabel: 'Instagram Story preview',
       selected: false
     },
     {
       label: 'Telegram',
-      value: 'Telegram',
+      value: 'Telegram News Feed preview',
       logo: 'wechat',
       previewLabel: 'Telegram News Feed preview',
       selected: false
     },
     {
       label: 'Tiktok',
-      value: 'Tiktok',
+      value: 'Tiktok News Feed preview',
       logo: 'tiktok',
       previewLabel: 'Tiktok News Feed preview',
       selected: false
     },
     {
       label: 'Youtube',
-      value: 'Youtube',
+      value: 'Youtube News Feed preview',
       logo: 'youtube',
       previewLabel: 'Youtube News Feed preview',
       selected: false
@@ -104,13 +104,7 @@ export class CreatePost implements OnInit {
   scrollX: string | null = null;
   scrollY: string | null = null;
 
-  postTo = [{
-    label: 'Facebook Post',
-    value: 'Facebook Post',
-    logo: 'facebook',
-    previewLabel: 'Facebook News Feed preview',
-    selected: true
-  }];
+  postTo = ['Facebook News Feed preview'];
 
   defaultOptionPosto = [...this.postTo];
   
@@ -118,12 +112,14 @@ export class CreatePost implements OnInit {
   status: string = '';
   isBoostPost: boolean = true;
 
-  selectedSitePreview: string = '';
+  selectedSitePreview: string = 'Facebook News Feed preview';
 
   visibleCreateTagPopover: boolean = false;
   visibleCreateAddPopover: boolean = false;
 
   inputColor: any;
+
+  currentSelectedTags: Tag[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -150,7 +146,7 @@ export class CreatePost implements OnInit {
   }
 
   handleClose(removedTag: {}): void {
-    this.listOfTags = this.listOfTags.filter((tag) => tag !== removedTag);
+    this.currentSelectedTags = this.currentSelectedTags.filter((tag) => tag !== removedTag);
   }
 
   sliceTagName(tag: string): string {
@@ -250,5 +246,20 @@ export class CreatePost implements OnInit {
 
   onClickAddTag(index : any){
     console.log(index);
+  }
+
+  handleChangeSelectTag(checked: boolean, tag: Tag): void {
+    if (checked) {
+      this.currentSelectedTags.push(tag);
+    } else {
+      this.currentSelectedTags = this.currentSelectedTags.filter(t => t !== tag);
+    }
+    console.log('You are interested in: ', this.currentSelectedTags);
+  }
+
+  
+  handleAddTags(postIndex : number) {
+    this.currentSelectedTags = this.tagsToAdd;
+    
   }
 }
