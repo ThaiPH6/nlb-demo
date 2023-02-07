@@ -38,3 +38,12 @@
   white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
   white-space: pre-wrap;
 }
+
+.preview-name {
+  width: 70%;
+  margin-bottom: 20px;
+  nz-select-top-control {
+    border: none;
+    padding-left: 0px;
+  }
+}
