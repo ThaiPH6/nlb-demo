@@ -13,42 +13,48 @@ export class PostAndStoryComponent implements OnInit {
   currentPage = 1;
   checked = false;
   buttons: Array<string> = ['Published', 'Scheduled', 'Drafts'];
+  addTagClicked: boolean = false;
+  inputColor: any;
+
+  visibleCreateTagPopover: boolean = false;
+  visibleCreateAddPopover: boolean = false;
+
 
   dataTitle: any = [
     {
       label: 'Title',
       icon: false,
-      width: '700px'
+      width: '700px',
     },
     {
       label: 'Date published',
       icon: false,
-      width: '230px'
+      width: '230px',
     },
     {
       label: 'Reach',
       icon: true,
-      width: '250px'
+      width: '250px',
     },
     {
       label: 'Engagements',
       icon: true,
-      width: '200px'
+      width: '200px',
     },
     {
       label: 'Likes and reactions',
       icon: true,
-      width: '200px'
+      width: '200px',
     },
     {
       label: 'Comment',
       icon: true,
-      width: '200px'
+      width: '200px',
     },
     {
       label: 'Share',
       icon: true,
-      width: '200px'
+      width: '200px',
     },
   ];
 
@@ -64,6 +70,15 @@ export class PostAndStoryComponent implements OnInit {
     { title: 'Art', color: '#ffb8b8' },
     { title: 'Education', color: '#a3daff' },
   ];
+
+  tagsToAdd = [
+    { title: 'House', color: '#ecb5ff' },
+    { title: 'Music', color: '#a7ed8e' },
+    { title: 'Art', color: '#ffb8b8' },
+    { title: 'Education', color: '#a3daff' },
+  ];
+
+
   constructor(
     private postService: PostStoryService
   ) {}
@@ -74,6 +89,10 @@ export class PostAndStoryComponent implements OnInit {
 
   handleClose(removedTag: {}): void {
     this.tags = this.tags.filter((tag) => tag !== removedTag);
+  }
+  
+  handleCloseAddTags(removedTag: {}): void {
+    this.tagsToAdd = this.tagsToAdd.filter((tag) => tag !== removedTag);
   }
 
   sliceTagName(tag: string): string {
@@ -89,10 +108,29 @@ export class PostAndStoryComponent implements OnInit {
   }
 
   handleInputConfirm(): void {
+    this.visibleCreateTagPopover = false;
+    this.inputColor = document.getElementById('color');
     if (this.inputValue) {
-      this.tags.push({title: this.inputValue, color: '#a3daff'});
+      this.tags.push({ title: this.inputValue, color: this.inputColor.value });
+      this.tagsToAdd.push({ title: this.inputValue, color: this.inputColor.value });
     }
     this.inputValue = '';
     this.inputVisible = false;
+  }
+
+  onClickCancelPopover(): void {
+    this.visibleCreateTagPopover = false;
+  }
+
+  changeCreateTagStatusPopOver(value: boolean): void {
+    console.log(value);
+  }
+
+  changeAddTagStatusPopOver(value: boolean): void {
+    console.log(value);
+  }
+
+  onClickAddTag(index : any){
+    console.log(index);
   }
 }

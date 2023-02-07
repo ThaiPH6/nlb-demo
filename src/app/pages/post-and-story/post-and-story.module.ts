@@ -17,6 +17,7 @@ import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { CreatePost } from './create-post/create-post.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {NzPaginationModule} from "ng-zorro-antd/pagination";
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
   declarations: [PostAndStoryComponent, CreatePost],
@@ -35,6 +36,8 @@ import {NzPaginationModule} from "ng-zorro-antd/pagination";
     NzInputModule,
     NzProgressModule,
     NzAvatarModule,
+    NzPaginationModule,
+    NzPopoverModule,
     ReactiveFormsModule,
     DragDropModule,
     NzPaginationModule
