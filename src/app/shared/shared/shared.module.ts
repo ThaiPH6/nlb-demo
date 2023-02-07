@@ -7,6 +7,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
     NzButtonModule,
     NzDropDownModule,
     NzSwitchModule,
+    NzModalModule
   ],
   exports: [
     NzCardModule,
@@ -28,6 +30,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
     NzButtonModule,
     NzDropDownModule,
     NzSwitchModule,
+    NzModalModule
   ]
 })
 export class SharedModule { }

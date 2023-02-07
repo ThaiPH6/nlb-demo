@@ -37,25 +37,3 @@
   line-height: 16px;
 }
 
-.thead-container {
-  background: #F5F5F5;
-  .thead-title {
-    color: #252525;
-  }
-}
-
-.action {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.avatar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.table {
-  overflow: auto;
-}

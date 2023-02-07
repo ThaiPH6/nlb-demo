@@ -10,6 +10,9 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Media } from './media.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { PostStoryService } from '../post-story.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-post',
@@ -90,7 +93,10 @@ export class CreatePost implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private postService: PostStoryService,
+    private modal: NzModalService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -171,5 +177,31 @@ export class CreatePost implements OnInit {
       // ChangeDetectorRef since file is loading outside the zone
       this.cd.markForCheck();
     }
+  }
+
+  publishPost(): void {
+    const newPost = {
+      key: '1',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: [
+        { title: 'House', color: '#ecb5ff' },
+        { title: 'Music', color: '#a7ed8e' },
+        { title: 'Art', color: '#ffb8b8' },
+      ]
+    }
+
+    this.postService.publishPost(newPost);
+    this.modal.success({
+      nzTitle: 'Published successfully',
+      nzContent: 'Now that your post is successfully published, you can boost it to help it reach more of the people that matter to you.'
+    });
+    this.router.navigateByUrl('/main/post&story');
   }
 }

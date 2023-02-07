@@ -31,7 +31,7 @@
         ></span>
         <span class="submenu-title">Inbox</span>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" nzSelected="true">
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" nzSelected="true" [routerLink]="['/main/post&story']" >
         <span
           style="color: white"
           nz-icon
@@ -58,14 +58,14 @@
         ></span>
         <span class="submenu-title">Calendar</span>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right">
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="['/main/campaigns']">
         <span
           style="color: white"
           nz-icon
           nzType="notification"
           nzTheme="outline"
         ></span>
-        <span class="submenu-title">Campaigns</span>
+        <span  class="submenu-title">Campaigns</span>
       </li>
     </ul>
   </nz-sider>
@@ -90,7 +90,7 @@
           </button>
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu>
-              <li nz-menu-item>
+              <li nz-menu-item [routerLink]="'/main/post&story/create'">
                 <img style="padding-right: 10.5px;" src="../../../../assets/icons/post-icon.svg">
                 <span>Posts</span>
               </li>
@@ -110,4 +110,5 @@
       <router-outlet></router-outlet>
     </nz-content>
   </nz-layout>
+
 </nz-layout>

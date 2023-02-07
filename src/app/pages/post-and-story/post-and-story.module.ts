@@ -16,6 +16,7 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { CreatePost } from './create-post/create-post.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {NzPaginationModule} from "ng-zorro-antd/pagination";
 
 @NgModule({
   declarations: [PostAndStoryComponent, CreatePost],
@@ -35,7 +36,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NzProgressModule,
     NzAvatarModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    NzPaginationModule
   ],
 })
 export class PostAndStoryModule {}

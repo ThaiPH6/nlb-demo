@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NzButtonSize } from 'ng-zorro-antd/button';
+import { Post } from './create-post/media.model';
+import { PostStoryService } from './post-story.service';
 
 @Component({
   selector: 'app-post-and-story',
@@ -8,6 +10,7 @@ import { NzButtonSize } from 'ng-zorro-antd/button';
 })
 export class PostAndStoryComponent implements OnInit {
   size: NzButtonSize = 'large';
+  currentPage = 1;
   checked = false;
   buttons: Array<string> = ['Published', 'Scheduled', 'Drafts'];
 
@@ -15,63 +18,41 @@ export class PostAndStoryComponent implements OnInit {
     {
       label: 'Title',
       icon: false,
+      width: '700px'
     },
     {
       label: 'Date published',
       icon: false,
+      width: '230px'
     },
     {
       label: 'Reach',
       icon: true,
+      width: '250px'
     },
     {
       label: 'Engagements',
       icon: true,
+      width: '200px'
     },
     {
       label: 'Likes and reactions',
       icon: true,
+      width: '200px'
+    },
+    {
+      label: 'Comment',
+      icon: true,
+      width: '200px'
+    },
+    {
+      label: 'Share',
+      icon: true,
+      width: '200px'
     },
   ];
 
-  listOfData: any = [
-    {
-      key: '1',
-      title: 'Double room...only 4xx000 VND/ night',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Boost post'
-    },
-    {
-      key: '2',
-      title: 'Double room...only 4xx000 VND/ night',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Boost post'
-    },
-    {
-      key: '3',
-      title: 'Double room...only 4xx000 VND/ night',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Boost post'
-    },
-    {
-      key: '4',
-      title: 'Double room...only 4xx000 VND/ night',
-      datePublished: Date.now(),
-      reach: '243',
-      engagements: '23',
-      likeAndReactions: '63',
-      status: 'Insight'
-    },
-  ];
+  listOfData: Post[] = [];
 
   inputVisible = false;
   inputValue = '';
@@ -83,9 +64,13 @@ export class PostAndStoryComponent implements OnInit {
     { title: 'Art', color: '#ffb8b8' },
     { title: 'Education', color: '#a3daff' },
   ];
-  constructor() {}
+  constructor(
+    private postService: PostStoryService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listOfData = this.postService.listOfData
+  }
 
   handleClose(removedTag: {}): void {
     this.tags = this.tags.filter((tag) => tag !== removedTag);

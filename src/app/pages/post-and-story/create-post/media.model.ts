@@ -7,13 +7,19 @@ export interface Media {
 }
 
 export interface Post {
+  key: string;
   title: string;
   tags: Tag[];
   isBoostPost: boolean;
-  datePublished: Date;
+  datePublished: number;
+  reach: string;
+  engagements: string;
+  likeAndReactions: string;
+  comment: string;
+  share: string;
 }
 
 export interface Tag {
-  tabLabel: string;
+  title: string;
   color: string;
 }
