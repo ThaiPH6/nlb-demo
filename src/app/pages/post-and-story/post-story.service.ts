@@ -25,6 +25,130 @@ export class PostStoryService {
         { title: 'Art', color: '#ffb8b8' },
       ]
     },
+    {
+      key: '2',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: []
+    },
+    {
+      key: '3',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: [
+        { title: 'House', color: '#ecb5ff' },
+        { title: 'Music', color: '#a7ed8e' },
+        { title: 'Art', color: '#ffb8b8' },
+      ]
+    },
+    {
+      key: '4',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: []
+    },
+    {
+      key: '5',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: []
+    },
+    {
+      key: '6',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: []
+    },
+    {
+      key: '7',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: [
+        { title: 'House', color: '#ecb5ff' },
+        { title: 'Music', color: '#a7ed8e' },
+        { title: 'Art', color: '#ffb8b8' },
+      ]
+    },
+    {
+      key: '8',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: [
+        { title: 'House', color: '#ecb5ff' },
+        { title: 'Music', color: '#a7ed8e' },
+        { title: 'Art', color: '#ffb8b8' },
+      ]
+    },
+    {
+      key: '9',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: []
+    },
+    {
+      key: '10',
+      title: 'Double room...only 4xx000 VND/ night',
+      datePublished: Date.now(),
+      reach: '243',
+      engagements: '23',
+      likeAndReactions: '63',
+      isBoostPost: true,
+      comment: '2',
+      share: '524',
+      tags: [
+        { title: 'House', color: '#ecb5ff' },
+        { title: 'Music', color: '#a7ed8e' },
+        { title: 'Art', color: '#ffb8b8' },
+      ]
+    },
   ];
 
   constructor() { }

@@ -84,7 +84,9 @@ export class PostAndStoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listOfData = this.postService.listOfData
+    this.listOfData = this.postService.listOfData.sort( (a,b) => {
+      return b.datePublished - a.datePublished
+    })
   }
 
   handleClose(removedTag: {}): void {
