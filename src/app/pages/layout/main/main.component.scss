@@ -5,8 +5,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+nz-layout {
+  background: #fff;
+}
 .app-layout {
   height: 100vh;
+  background: white !important;
 }
 
 .menu-sidebar {
