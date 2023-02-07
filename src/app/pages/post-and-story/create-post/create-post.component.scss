@@ -84,3 +84,14 @@
   border: none;
   border-radius: 4px;
 }
+
+.select-tag {
+  height: 46px;
+
+  /* line */
+  padding: 10px;
+  border: 1px solid #e5ebea;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}

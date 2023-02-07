@@ -7,350 +7,340 @@
 
       <div class="create-content">
         <!-- <form> -->
-          <div class="post-address" nz-row>
-            <div nz-col [nzSpan]="14" style="display: flex">
-              <nz-form-item>
-                <nz-form-label
-                  nzRequired
-                  nzFor="postTo"
-                  style="
-                    width: 50px;
-                    display: flex;
-                    align-items: center;
-                    margin-left: 12px;
-                  "
-                  >Post to</nz-form-label
-                >
-
-                <!-- <input nz-input formControlName="email" id="email" /> -->
-                <nz-select
-                  [(ngModel)]="postTo"
-                  id="postTo"
-                  style="width: 300px"
-                  nzMode="multiple"
-                  [nzMaxTagCount]="2"
-                  [nzMaxTagPlaceholder]="tagPlaceHolder"
-                >
-                  <nz-option
-                    *ngFor="let option of listOfOptionAddress"
-                    [nzLabel]="option.label"
-                    [nzValue]="option"
-                  >
-                    <!-- <span nz-icon [nzType]="option.logo"></span> -->
-                  </nz-option>
-                </nz-select>
-                <ng-template #tagPlaceHolder let-selectedList
-                  >and {{ selectedList.length }} more selected</ng-template
-                >
-              </nz-form-item>
-            </div>
-
-            <div
-              nz-col
-              [nzSpan]="10"
-              style="display: flex; align-items: center"
-            >
-              <div class="avatar" style="margin-right: 15px">
-                <img src="../../../../assets/imgs/nlb-logo.svg" />
-              </div>
-              <div class="privacy">
-                <h3 style="margin-bottom: 0px">www.nlb.gov.sg</h3>
-                <nz-select
-                  [(ngModel)]="privacy"
-                  id="privacy"
-                  style="width: 100px"
-                >
-                  <nz-option
-                    *ngFor="let option of privacies"
-                    [nzLabel]="option.label"
-                    [nzValue]="option.value"
-                  >
-                    <!-- <span nz-icon [nzType]="option.logo"></span> -->
-                  </nz-option>
-                </nz-select>
-              </div>
-            </div>
-          </div>
-
-          <div class="post-text" style="margin-bottom: 30px">
-            <nz-input-group>
-              <textarea
-                [(ngModel)]="status"
-                type="text"
-                nz-input
-                placeholder="What's on your mind?"
-              ></textarea>
-            </nz-input-group>
-          </div>
-
-          <ng-container *ngIf="mediaMode">
-            <div
-              class="media"
-              style="
-                margin-bottom: 30px;
-                border-radius: 3px;
-                border: 1px solid #e0e0e0;
-                padding: 12px;
-              "
-            >
-              <h3>Media</h3>
-              <p>
-                Share photos or a video. Instagram post can't exceed 10 photos
-              </p>
-              <nz-table
-                [nzData]="listOfPhotos"
-                [nzFrontPagination]="false"
-                [nzShowPagination]="false"
+        <div class="post-address" nz-row>
+          <div nz-col [nzSpan]="14" style="display: flex">
+            <nz-form-item>
+              <nz-form-label
+                nzRequired
+                nzFor="postTo"
+                style="
+                  width: 50px;
+                  display: flex;
+                  align-items: center;
+                  margin-left: 12px;
+                "
+                >Post to</nz-form-label
               >
-                <tbody cdkDropList (cdkDropListDropped)="drop($event)">
-                  <tr *ngFor="let data of listOfPhotos" cdkDrag>
-                    <td style="width: 50px">
-                      <span nz-icon nzType="holder" nzTheme="outline"></span>
-                    </td>
-                    <td>
-                      <img
-                        style="height: 32px; width: 32px"
-                        [src]="data.image"
-                      />
-                      {{ data?.size }}
-                    </td>
-                    <td style="width: 150px">
-                      <div class="action-buttons" style="display: flex; justify-content: flex-end;">
-                        <button
-                          style="
-                            width: 29px;
-                            height: 29px;
-                            background: #ffffff;
-                            border: 1px solid #e5ebea;
-                            border-radius: 4px;
-                          "
-                        >
+
+              <!-- <input nz-input formControlName="email" id="email" /> -->
+              <nz-select
+                [(ngModel)]="postTo"
+                id="postTo"
+                style="width: 300px"
+                nzMode="multiple"
+                [nzMaxTagCount]="2"
+                [nzMaxTagPlaceholder]="tagPlaceHolder"
+              >
+                <nz-option
+                  *ngFor="let option of listOfOptionAddress"
+                  [nzLabel]="option.label"
+                  [nzValue]="option.value"
+                >
+                  <!-- <span nz-icon [nzType]="option.logo"></span> -->
+                </nz-option>
+              </nz-select>
+              <ng-template #tagPlaceHolder let-selectedList
+                >and {{ selectedList.length }} more selected</ng-template
+              >
+            </nz-form-item>
+          </div>
+
+          <div nz-col [nzSpan]="10" style="display: flex; align-items: center">
+            <div class="avatar" style="margin-right: 15px">
+              <img src="../../../../assets/imgs/nlb-logo.svg" />
+            </div>
+            <div class="privacy">
+              <h3 style="margin-bottom: 0px">www.nlb.gov.sg</h3>
+              <nz-select
+                [(ngModel)]="privacy"
+                id="privacy"
+                style="width: 100px"
+              >
+                <nz-option
+                  *ngFor="let option of privacies"
+                  [nzLabel]="option.label"
+                  [nzValue]="option.value"
+                >
+                  <!-- <span nz-icon [nzType]="option.logo"></span> -->
+                </nz-option>
+              </nz-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="post-text" style="margin-bottom: 30px">
+          <nz-input-group>
+            <textarea
+              [(ngModel)]="status"
+              type="text"
+              nz-input
+              placeholder="What's on your mind?"
+            ></textarea>
+          </nz-input-group>
+        </div>
+
+        <ng-container *ngIf="mediaMode">
+          <div
+            class="media"
+            style="
+              margin-bottom: 30px;
+              border-radius: 3px;
+              border: 1px solid #e0e0e0;
+              padding: 12px;
+            "
+          >
+            <h3>Media</h3>
+            <p>
+              Share photos or a video. Instagram post can't exceed 10 photos
+            </p>
+            <nz-table
+              [nzData]="listOfPhotos"
+              [nzFrontPagination]="false"
+              [nzShowPagination]="false"
+            >
+              <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+                <tr *ngFor="let data of listOfPhotos" cdkDrag>
+                  <td style="width: 50px">
+                    <span nz-icon nzType="holder" nzTheme="outline"></span>
+                  </td>
+                  <td>
+                    <img style="height: 32px; width: 32px" [src]="data.image" />
+                    {{ data?.size }}
+                  </td>
+                  <td style="width: 150px">
+                    <div
+                      class="action-buttons"
+                      style="display: flex; justify-content: flex-end"
+                    >
+                      <button
+                        style="
+                          width: 29px;
+                          height: 29px;
+                          background: #ffffff;
+                          border: 1px solid #e5ebea;
+                          border-radius: 4px;
+                        "
+                      >
                         <span nz-icon nzType="edit" nzTheme="outline"></span>
                       </button>
                       <button
-                          style="
-                            width: 29px;
-                            height: 29px;
-                            background: #E5EBEA;
-                            border: 1px solid #e5ebea;
-                            border-radius: 4px;
-                            margin-left: 10px;
-                            padding-left: 0px;
-                            padding-right: 0px;
-                            padding-bottom: 6px;
-                          "
-                        >
+                        style="
+                          width: 29px;
+                          height: 29px;
+                          background: #e5ebea;
+                          border: 1px solid #e5ebea;
+                          border-radius: 4px;
+                          margin-left: 10px;
+                          padding-left: 0px;
+                          padding-right: 0px;
+                          padding-bottom: 6px;
+                        "
+                      >
                         <span nz-icon nzTheme="outline">
-                          <img src="../../../../assets/icons/tag-icon.svg">
+                          <img src="../../../../assets/icons/tag-icon.svg" />
                         </span>
                       </button>
                       <button
-                          style="
-                            width: 29px;
-                            height: 29px;
-                            background: #ffffff;
-                            border: 1px solid #e5ebea;
-                            border-radius: 4px;
-                            margin-left: 10px;
-                          "
-                        >
+                        style="
+                          width: 29px;
+                          height: 29px;
+                          background: #ffffff;
+                          border: 1px solid #e5ebea;
+                          border-radius: 4px;
+                          margin-left: 10px;
+                        "
+                      >
                         <span nz-icon nzType="delete" nzTheme="outline"></span>
                       </button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </nz-table>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
 
-              <button
+            <button
+              style="
+                margin-top: 10px;
+                background: #646464;
+                border: 1px solid #646464;
+                border-radius: 3px;
+                color: white;
+              "
+              nz-button
+              (click)="fileInput.click()"
+            >
+              Add a photo
+              <span
+                ><img
+                  style="margin-left: 5px"
+                  src="../../../../assets/icons/add-icon.svg"
+              /></span>
+            </button>
+            <input
+              style="visibility: hidden"
+              type="file"
+              id="imageUpload"
+              accept=".png, .jpg, .jpeg"
+              (change)="addPhoto($event)"
+              #fileInput
+            />
+          </div>
+        </ng-container>
+
+        <div class="boost-post" style="margin-bottom: 30px">
+          <div
+            class="addtional-post"
+            style="display: flex; justify-content: space-between"
+          >
+            <div>
+              <p>Post to your post</p>
+            </div>
+            <div>
+              <span
+                nz-icon
+                nzType="link"
+                nzTheme="outline"
+                style="height: 15px; width: 15px; color: black"
+              ></span>
+              <span
+                nz-icon
+                nzType="heart"
+                nzTheme="fill"
+                style="color: #f6686e; height: 15px; width: 15px; margin-left: 12px;"
+              ></span>
+              <span
+                nz-icon
+                nzType="file-image"
+                nzTheme="fill"
                 style="
-                  margin-top: 10px;
-                  background: #646464;
-                  border: 1px solid #646464;
-                  border-radius: 3px;
-                  color: white;
+                  color: #005e58;
+                  height: 15px;
+                  width: 15px;
+                  margin-left: 12px;
                 "
-                nz-button
-                (click)="fileInput.click()"
+                (click)="mediaMode = !mediaMode"
+              ></span>
+              <span
+                nz-icon
+                nzType="file"
+                nzTheme="fill"
+                style="
+                  color: #3253ab;
+                  height: 15px;
+                  width: 15px;
+                  margin-left: 12px;
+                "
+              ></span>
+              <span
+                nz-icon
+                nzType="smile"
+                nzTheme="fill"
+                style="
+                  color: #ffad4f;
+                  height: 15px;
+                  width: 15px;
+                  margin-left: 12px;
+                "
+              ></span>
+              <span
+                nz-icon
+                nzType="environment"
+                nzTheme="fill"
+                style="
+                  color: #616161;
+                  height: 15px;
+                  width: 15px;
+                  margin-left: 12px;
+                "
+              ></span>
+            </div>
+          </div>
+
+          <div
+            class="boost"
+            nz-row
+            [nzGutter]="24"
+            style="display: flex; align-items: center"
+          >
+            <div nz-col [nzSpan]="2">
+              <img src="../../../../assets/imgs/boost.svg" />
+            </div>
+            <div nz-col [nzSpan]="12">
+              <h3>Boost post</h3>
+              <p style="margin: 0px">
+                You'll choose settings after you click Post
+              </p>
+            </div>
+            <div nz-col [nzSpan]="4">
+              <nz-switch [(ngModel)]="isBoostPost"></nz-switch>
+            </div>
+          </div>
+        </div>
+
+        <div class="tag-field" nz-col nzSpan="24" style="margin-bottom: 60px">
+          <div nz-row nzJustify="space-around">
+            <div
+              class="tag"
+              nz-col
+              nzSpan="1"
+              style="
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 19px;
+                color: #252525;
+              "
+            >
+              Tag
+            </div>
+            <div class="tag-container" nz-col nzSpan="23">
+              <div
+                nz-dropdown
+                [nzDropdownMenu]="menu"
+                style="
+                  width: 100%;
+                  height: 46px;
+                  border: 1px solid #e5ebea;
+                  border-radius: 3px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding-left: 10px;
+                  padding-right: 10px;
+                "
               >
-                Add a photo
-                <span
-                  ><img
-                    style="margin-left: 5px"
-                    src="../../../../assets/icons/add-icon.svg"
-                /></span>
-              </button>
-              <input
-                style="visibility: hidden"
-                type="file"
-                id="imageUpload"
-                accept=".png, .jpg, .jpeg"
-                (change)="addPhoto($event)"
-                #fileInput
-              />
-            </div>
-          </ng-container>
+                <div class="tag-field">
+                  <nz-tag
+                    *ngFor="
+                      let tagSelected of currentSelectedTags;
+                      let i = index
+                    "
+                    [nzMode]="'closeable'"
+                    (nzOnClose)="handleClose(tagSelected)"
+                    [nzColor]="tagSelected.color"
+                  >
+                    {{ sliceTagName(tagSelected.title) }}
+                  </nz-tag>
+                </div>
 
-          <div class="boost-post" style="margin-bottom: 30px">
-            <div
-              class="addtional-post"
-              style="display: flex; justify-content: space-between"
-            >
-              <div>
-                <p>Post to your post</p>
-              </div>
-              <div>
-                <span
-                  nz-icon
-                  nzType="heart"
-                  nzTheme="fill"
-                  style="color: #f6686e; height: 15px; width: 15px"
-                ></span>
-                <span
-                  nz-icon
-                  nzType="file-image"
-                  nzTheme="fill"
-                  style="
-                    color: #005e58;
-                    height: 15px;
-                    width: 15px;
-                    margin-left: 12px;
-                  "
-                  (click)="mediaMode = !mediaMode"
-                ></span>
-                <span
-                  nz-icon
-                  nzType="file"
-                  nzTheme="fill"
-                  style="
-                    color: #3253ab;
-                    height: 15px;
-                    width: 15px;
-                    margin-left: 12px;
-                  "
-                ></span>
-                <span
-                  nz-icon
-                  nzType="smile"
-                  nzTheme="fill"
-                  style="
-                    color: #ffad4f;
-                    height: 15px;
-                    width: 15px;
-                    margin-left: 12px;
-                  "
-                ></span>
-                <span
-                  nz-icon
-                  nzType="environment"
-                  nzTheme="fill"
-                  style="
-                    color: #616161;
-                    height: 15px;
-                    width: 15px;
-                    margin-left: 12px;
-                  "
-                ></span>
-              </div>
-            </div>
-
-            <div
-              class="boost"
-              nz-row
-              [nzGutter]="24"
-              style="display: flex; align-items: center"
-            >
-              <div nz-col [nzSpan]="2">
-                <img src="../../../../assets/imgs/boost.svg" />
-              </div>
-              <div nz-col [nzSpan]="12">
-                <h3>Boost post</h3>
-                <p style="margin: 0px">
-                  You'll choose settings after you click Post
-                </p>
-              </div>
-              <div nz-col [nzSpan]="4">
-                <nz-switch [(ngModel)]="isBoostPost"></nz-switch>
+                <span nz-icon nzType="down"></span>
               </div>
             </div>
           </div>
 
-          <div class="tag-field" nz-col nzSpan="24" style="margin-bottom: 30px">
-            <div nz-row nzJustify="space-around">
-              <div
-                class="tag"
-                nz-col
-                nzSpan="1"
-                style="
-                  display: flex;
-                  align-items: center;
-                  font-weight: 500;
-                  font-size: 12px;
-                  line-height: 19px;
-                  color: #252525;
-                "
-              >
-                Tag
-              </div>
-              <div class="tag-container" nz-col nzSpan="23">
-                <div
-                  nz-dropdown
-                  [nzDropdownMenu]="menu"
-                  style="
-                    width: 100%;
-                    height: 46px;
-                    border: 1px solid #e5ebea;
-                    border-radius: 3px;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                  "
-                >
-                  <div class="tag-field">
-                    <nz-tag
-                      *ngFor="let tag of listOfTags; let i = index"
-                      [nzMode]="'closeable'"
-                      (nzOnClose)="handleClose(tag)"
-                      [nzColor]="tag.color"
-                    >
-                      {{ sliceTagName(tag.title) }}
-                    </nz-tag>
-                  </div>
-
-                  <span nz-icon nzType="down"></span>
-                </div>
-              </div>
-            </div>
-
-            <nz-dropdown-menu #menu="nzDropdownMenu">
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <div class="select-tag">
               <nz-tag
                 *ngFor="let tag of listOfTags; let i = index"
-                [nzMode]="'closeable'"
+                [nzMode]="'checkable'"
                 (nzOnClose)="handleClose(tag)"
                 [nzColor]="tag.color"
+                [nzChecked]="currentSelectedTags.indexOf(tag) > -1"
+                (nzCheckedChange)="handleChangeSelectTag($event, tag)"
               >
                 {{ sliceTagName(tag.title) }}
               </nz-tag>
-              <!-- <nz-tag
-                *ngIf="!inputVisible"
-                class="editable-tag"
-                nzNoAnimation
-                (click)="showInput()"
-              >
-                <span nz-icon nzType="plus"></span>
-              </nz-tag>
-              <input
-                #inputElement
-                nz-input
-                nzSize="small"
-                *ngIf="inputVisible"
-                type="text"
-                style="width: 78px"
-                (blur)="handleInputConfirm()"
-                (keydown.enter)="handleInputConfirm()"
-              /> -->
               <button
                 *ngIf="!inputVisible"
                 class="editable-tag"
@@ -388,42 +378,47 @@
                   </button>
                 </div>
               </ng-template>
-            </nz-dropdown-menu>
-          </div>
+            </div>
+          </nz-dropdown-menu>
+        </div>
 
+        <div
+          class="submit-buttons-field"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
           <div
-            class="submit-buttons-field"
+            class="tag"
             style="
               display: flex;
               align-items: center;
-              justify-content: space-between;
+              font-weight: 500;
+              font-size: 12px;
+              line-height: 19px;
+              color: #252525;
             "
           >
-            <div
-              class="tag"
-              style="
-                display: flex;
-                align-items: center;
-                font-weight: 500;
-                font-size: 12px;
-                line-height: 19px;
-                color: #252525;
-              "
-            >
-              Scheduling options
-            </div>
-            <div class="button-group">
-              <button nz-button style="background: #3253ab; border-radius: 4px" (click)="publishPost()">
-                <p style="font-weight: 500; color: #e5ebea">Publish now</p>
-              </button>
-              <button nz-button style="border-radius: 4px; margin-left: 12px">
-                <p style="font-weight: 500">Schedule</p>
-              </button>
-              <button nz-button style="border-radius: 4px; margin-left: 12px">
-                <p style="font-weight: 500">Save as draft</p>
-              </button>
-            </div>
+            Scheduling options
           </div>
+          <div class="button-group">
+            <button
+              nz-button
+              style="background: #3253ab; border-radius: 4px"
+              (click)="publishPost()"
+            >
+              <p style="font-weight: 500; color: #e5ebea">Publish now</p>
+            </button>
+            <button nz-button style="border-radius: 4px; margin-left: 12px">
+              <p style="font-weight: 500">Schedule</p>
+            </button>
+            <button nz-button style="border-radius: 4px; margin-left: 12px">
+              <p style="font-weight: 500">Save as draft</p>
+            </button>
+          </div>
+        </div>
         <!-- </form> -->
       </div>
     </div>
@@ -439,12 +434,16 @@
       >
         <!-- <h2 style="margin-bottom: 0px">Facebook News Feed preview</h2> -->
         <h2 nz-dropdown [nzDropdownMenu]="listPostTo">
-          {{selectedSitePreview}}
+          {{ selectedSitePreview }}
           <span nz-icon nzType="down"></span>
         </h2>
         <nz-dropdown-menu #listPostTo="nzDropdownMenu">
           <ul nz-menu nzSelectable>
-            <li nz-menu-item *ngFor="let preview of postTo" ><p (click)="selectedSitePreview = preview.previewLabel">{{preview.previewLabel}}</p></li>
+            <li nz-menu-item *ngFor="let preview of postTo">
+              <p (click)="selectedSitePreview = preview">
+                {{ preview }}
+              </p>
+            </li>
           </ul>
         </nz-dropdown-menu>
         <!-- <nz-select class="preview-name" ngModel="Facebook News Feed preview">
@@ -479,11 +478,11 @@
         >
           <div class="post-content">
             <div class="content">
-              {{status}}
+              {{ status }}
             </div>
             <div class="post-image">
               <ng-container *ngFor="let img of listOfPhotos">
-                <img style="height: 250px; width: 100%;" [src]="img.image">
+                <img style="height: 250px; width: 100%" [src]="img.image" />
               </ng-container>
             </div>
           </div>

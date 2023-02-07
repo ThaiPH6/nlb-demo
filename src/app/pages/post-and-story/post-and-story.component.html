@@ -227,7 +227,22 @@
                       >
                         <span>Add Tag</span>
                       </li>
+                      <ng-template #addTagTemplate>
+                        <ng-container
+                          ><nz-tag
+                            style="color: black"
+                            *ngFor="let tag of tagsToAdd; let i = index"
+                            [nzMode]="'closeable'"
+                            (nzOnClose)="handleCloseAddTags(tag)"
+                            [nzColor]="tag.color"
+                            (keydown.enter)="handleAddTags(i)"
+                          >
+                            {{ sliceTagName(tag.title) }}
+                          </nz-tag></ng-container
+                        >
 
+                        <button (click)="handleAddTags(i)">OK</button>
+                      </ng-template>
                       <li nz-menu-item>
                         <span>Delete</span>
                       </li>
@@ -307,16 +322,3 @@
     </div>
   </div>
 </ng-container>
-
-<ng-template #addTagTemplate>
-  <nz-tag
-    style="color: black;"
-    *ngFor="let tag of tags; let i = index"
-    [nzMode]="'closeable'"
-    (nzOnClose)="handleCloseAddTags(tag)"
-    [nzColor]="tag.color"
-    (keydown.enter)="handleInputConfirm()"
-  >
-    {{ sliceTagName(tag.title) }}
-  </nz-tag>
-</ng-template>
