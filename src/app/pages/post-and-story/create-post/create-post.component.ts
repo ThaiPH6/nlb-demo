@@ -74,6 +74,13 @@ export class CreatePost implements OnInit {
     { title: 'Education', color: '#a3daff' },
   ];
 
+  tagsToAdd = [
+    { title: 'House', color: '#ecb5ff' },
+    { title: 'Music', color: '#a7ed8e' },
+    { title: 'Art', color: '#ffb8b8' },
+    { title: 'Education', color: '#a3daff' },
+  ];
+
   inputVisible = false;
   inputValue = '';
 
@@ -110,6 +117,13 @@ export class CreatePost implements OnInit {
   privacy: string = '';
   status: string = '';
   isBoostPost: boolean = true;
+
+  selectedSitePreview: string = '';
+
+  visibleCreateTagPopover: boolean = false;
+  visibleCreateAddPopover: boolean = false;
+
+  inputColor: any;
 
   constructor(
     private fb: FormBuilder,
@@ -156,13 +170,13 @@ export class CreatePost implements OnInit {
   }
 
   handleInputConfirm(): void {
-    if (this.fc['newtag'].value) {
-      this.listOfTags.push({
-        title: this.fc['newtag'].value,
-        color: '#a3daff',
-      });
+    this.visibleCreateTagPopover = false;
+    this.inputColor = document.getElementById('color');
+    if (this.inputValue) {
+      this.listOfTags.push({ title: this.inputValue, color: this.inputColor.value });
+      this.tagsToAdd.push({ title: this.inputValue, color: this.inputColor.value });
     }
-    this.fc['newtag'].setValue('');
+    this.inputValue = '';
     this.inputVisible = false;
   }
 
@@ -220,5 +234,21 @@ export class CreatePost implements OnInit {
       nzContent: 'Now that your post is successfully published, you can boost it to help it reach more of the people that matter to you.'
     });
     this.router.navigateByUrl('/main/post&story');
+  }
+
+  onClickCancelPopover(): void {
+    this.visibleCreateTagPopover = false;
+  }
+
+  changeCreateTagStatusPopOver(value: boolean): void {
+    console.log(value);
+  }
+
+  changeAddTagStatusPopOver(value: boolean): void {
+    console.log(value);
+  }
+
+  onClickAddTag(index : any){
+    console.log(index);
   }
 }

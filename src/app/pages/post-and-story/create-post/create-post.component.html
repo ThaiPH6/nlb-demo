@@ -38,7 +38,6 @@
                   >
                     <!-- <span nz-icon [nzType]="option.logo"></span> -->
                   </nz-option>
-                  <nz-option *ngFor="let option of defaultOptionPosto" [nzLabel]="option.label" [nzValue]="option" nzHide></nz-option>
                 </nz-select>
                 <ng-template #tagPlaceHolder let-selectedList
                   >and {{ selectedList.length }} more selected</ng-template
@@ -334,7 +333,7 @@
               >
                 {{ sliceTagName(tag.title) }}
               </nz-tag>
-              <nz-tag
+              <!-- <nz-tag
                 *ngIf="!inputVisible"
                 class="editable-tag"
                 nzNoAnimation
@@ -351,7 +350,44 @@
                 style="width: 78px"
                 (blur)="handleInputConfirm()"
                 (keydown.enter)="handleInputConfirm()"
-              />
+              /> -->
+              <button
+                *ngIf="!inputVisible"
+                class="editable-tag"
+                nzNoAnimation
+                nz-button
+                nz-popover
+                nzPopoverTitle="Add Tag"
+                [(nzPopoverVisible)]="visibleCreateTagPopover"
+                (nzPopoverVisibleChange)="changeCreateTagStatusPopOver($event)"
+                nzPopoverTrigger="click"
+                [nzPopoverContent]="contentTemplate"
+              >
+                <span nz-icon nzType="plus"></span>
+              </button>
+              <ng-template #contentTemplate>
+                <div class="input">
+                  <input
+                    class="input-popover"
+                    #inputElement
+                    nz-input
+                    type="text"
+                    [(ngModel)]="inputValue"
+                    (blur)="handleInputConfirm()"
+                    (keydown.enter)="handleInputConfirm()"
+                  />
+                  <input style="margin-left: 10px" type="color" id="color" />
+                </div>
+
+                <div class="button-container">
+                  <button class="btn-cancel" (click)="onClickCancelPopover()">
+                    Cancel
+                  </button>
+                  <button class="btn-ok" (click)="handleInputConfirm()">
+                    OK
+                  </button>
+                </div>
+              </ng-template>
             </nz-dropdown-menu>
           </div>
 
@@ -403,12 +439,12 @@
       >
         <!-- <h2 style="margin-bottom: 0px">Facebook News Feed preview</h2> -->
         <h2 nz-dropdown [nzDropdownMenu]="listPostTo">
-          Facebook News Feed preview
+          {{selectedSitePreview}}
           <span nz-icon nzType="down"></span>
         </h2>
         <nz-dropdown-menu #listPostTo="nzDropdownMenu">
           <ul nz-menu nzSelectable>
-            <li nz-menu-item *ngFor="let preview of postTo">{{preview.previewLabel}}</li>
+            <li nz-menu-item *ngFor="let preview of postTo" ><p (click)="selectedSitePreview = preview.previewLabel">{{preview.previewLabel}}</p></li>
           </ul>
         </nz-dropdown-menu>
         <!-- <nz-select class="preview-name" ngModel="Facebook News Feed preview">
