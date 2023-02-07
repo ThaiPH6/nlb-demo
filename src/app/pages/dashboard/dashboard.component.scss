@@ -1,0 +1,151 @@
+@mixin fontStyle {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: #707683;
+}
+
+.dashboard-container {
+  background: #FFFFFF;
+}
+
+.chart-container {
+  padding: 30px;
+
+  .deals-container {
+    margin-top: 30px;
+    border: 1px #E5EBEA solid;
+  }
+}
+
+.chart-text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  color: #192A3E;
+  letter-spacing: 0.01em;
+  display: flex;
+  gap: 8px;
+}
+
+.task-text {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: #334D6E;
+}
+
+.task-container {
+  padding: 10px 30px;
+  background: #FFFFFF;
+
+
+  .task-content {
+    border: 1px solid #E5EBEA;
+    padding: 10px 15px;
+  }
+
+  .task-statistic {
+    font-size: 6px;
+    color: #707683;
+  }
+
+
+  .task-info-container {
+    margin-top: 30px;
+  .task-info {
+    background: #FFFFFF;
+    border: 1px #E5EBEA solid;
+    border-radius: 4px;
+    margin-top: 15px;
+
+    .task-info-text {
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 22px;
+      letter-spacing: 0.01em;
+      color: #323C47;
+    }
+    .task-info-second-text {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 18px;
+      text-align: right;
+      letter-spacing: 0.01em;
+      color: #90A0B7;
+    }
+  }
+  }
+}
+
+.due-date {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: #707683;
+  opacity: 0.5;
+}
+
+.status {
+  padding: 10px;
+  background: #2ED47A;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  border-radius: 4px;
+  color: #FFFFFF;
+}
+
+.status-error {
+  padding: 10px;
+  background: #F7685B;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  border-radius: 4px;
+  color: #FFFFFF;
+}
+
+.date {
+  @include fontStyle
+}
+
+.name {
+  @include fontStyle
+}
+
+.pie-chart-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .pie-chart-info-content {
+    display: flex;
+    gap: 10px;
+  }
+  .pie-chart-text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: 0.01em;
+    gap: 5px;
+    color: #192A3E;
+    margin: 10px;
+  }
+}
+
+.table-container {
+  padding: 30px;
+}
+
+.card {
+  border: 1px solid #E5EBEA;
+  box-shadow: 0px 24px 35px rgba(0, 0, 0, 0.12);
+}

@@ -31,6 +31,13 @@ const routes: Routes = [
           import('./pages/campaigns/campaigns.module').then(
             (m) => m.CampaignsModule
           )
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./pages/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          )
       }
     ],
   },

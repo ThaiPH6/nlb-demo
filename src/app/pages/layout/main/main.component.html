@@ -13,6 +13,10 @@
       </a>
     </div>
     <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="['/main/dashboard']">
+        <span style="color: white" nz-icon nzType="layout" nzTheme="outline"></span>
+        <span class="submenu-title">Dashboard</span>
+      </li>
       <li nz-menu-item nz-tooltip nzTooltipPlacement="right">
         <span
           style="color: white"
@@ -103,12 +107,17 @@
         </div>
       </div>
     </nz-header>
+    <ng-container *ngIf="currentRoute === dashboardRoute; else normalRoute">
+      <router-outlet (activate)='onActivate()'></router-outlet>
+    </ng-container>
+    <ng-template #normalRoute>
     <nz-content>
       <!-- <div class="inner-content">
         <router-outlet></router-outlet>
       </div> -->
-      <router-outlet></router-outlet>
+      <router-outlet (activate)='onActivate()'></router-outlet>
     </nz-content>
+    </ng-template>
   </nz-layout>
 
 </nz-layout>
