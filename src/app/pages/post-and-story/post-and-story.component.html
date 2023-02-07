@@ -78,8 +78,8 @@
                 nz-button
                 nz-popover
                 nzPopoverTitle="Add Tag"
-                [(nzPopoverVisible)]="visible"
-                (nzPopoverVisibleChange)="change($event)"
+                [(nzPopoverVisible)]="visibleCreateTagPopover"
+                (nzPopoverVisibleChange)="changeCreateTagStatusPopOver($event)"
                 nzPopoverTrigger="click"
                 [nzPopoverContent]="contentTemplate"
               >
@@ -143,7 +143,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of basicTable.data">
+          <tr *ngFor="let data of basicTable.data; let i = index">
             <td [nzChecked]="true" [nzDisabled]="false"></td>
             <td>
               <div nz-row [nzGutter]="[0, 24]">
@@ -212,10 +212,21 @@
                     ></i>
                   </button>
                   <nz-dropdown-menu #postActions="nzDropdownMenu">
-                    <ul nz-menu>
+                    <ul nz-menu #menu>
                       <li nz-menu-item>
+                        <span>Edit</span>
+                      </li>
+                      <li
+                        nz-menu-item
+                        nz-popover
+                        nzPopoverPlacement="topRight"
+                        nzPopoverTrigger="click"
+                        [nzPopoverContent]="addTagTemplate"
+                        (click)="onClickAddTag(i)"
+                      >
                         <span>Add Tag</span>
                       </li>
+                    
                       <li nz-menu-item>
                         <span>Delete</span>
                       </li>
@@ -295,3 +306,15 @@
     </div>
   </div>
 </ng-container>
+
+
+<ng-template #addTagTemplate>
+  <nz-tag
+    *ngFor="let tag of tags; let i = index"
+    [nzMode]="'closeable'"
+    (nzOnClose)="handleClose(tag)"
+    [nzColor]="tag.color"
+  >
+    {{ sliceTagName(tag.title) }}
+  </nz-tag>
+</ng-template>

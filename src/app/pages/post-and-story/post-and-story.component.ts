@@ -14,7 +14,9 @@ export class PostAndStoryComponent implements OnInit {
   addTagClicked: boolean = false;
   inputColor: any;
 
-  visible: boolean = false;
+  visibleCreateTagPopover: boolean = false;
+  visibleCreateAddPopover: boolean = false;
+
 
   dataTitle: any = [
     {
@@ -132,7 +134,7 @@ export class PostAndStoryComponent implements OnInit {
   }
 
   handleInputConfirm(): void {
-    this.visible = false;
+    this.visibleCreateTagPopover = false;
     this.inputColor = document.getElementById('color');
     if (this.inputValue) {
       this.tags.push({ title: this.inputValue, color: this.inputColor.value });
@@ -142,12 +144,18 @@ export class PostAndStoryComponent implements OnInit {
   }
 
   onClickCancelPopover(): void {
-    this.visible = false;
+    this.visibleCreateTagPopover = false;
   }
 
-  change(value: boolean): void {
+  changeCreateTagStatusPopOver(value: boolean): void {
     console.log(value);
   }
 
-  
+  changeAddTagStatusPopOver(value: boolean): void {
+    console.log(value);
+  }
+
+  onClickAddTag(index : any){
+    console.log(index);
+  }
 }
