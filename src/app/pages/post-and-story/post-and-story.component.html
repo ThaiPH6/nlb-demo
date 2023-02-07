@@ -24,8 +24,12 @@
               <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
               <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
             </nz-select> -->
-            <nz-input-group style="width: 100%;" [nzSuffix]="suffixIconSearch">
-              <input type="text" nz-input placeholder="Search by tittle/ date/ captions" />
+            <nz-input-group style="width: 100%" [nzSuffix]="suffixIconSearch">
+              <input
+                type="text"
+                nz-input
+                placeholder="Search by tittle/ date/ captions"
+              />
             </nz-input-group>
             <ng-template #suffixIconSearch>
               <span nz-icon nzType="search"></span>
@@ -41,6 +45,7 @@
           <div nz-row nzJustify="space-between">
             <div nz-row nzJustify="center" nzAlign="middle">
               <nz-tag
+                style="color: black"
                 *ngFor="let tag of tags; let i = index"
                 [nzMode]="'closeable'"
                 (nzOnClose)="handleClose(tag)"
@@ -48,7 +53,7 @@
               >
                 {{ sliceTagName(tag.title) }}
               </nz-tag>
-              <nz-tag
+              <!-- <nz-tag
                 *ngIf="!inputVisible"
                 class="editable-tag"
                 nzNoAnimation
@@ -66,31 +71,78 @@
                 style="width: 78px"
                 (blur)="handleInputConfirm()"
                 (keydown.enter)="handleInputConfirm()"
-              />
+              /> -->
+              <button
+                *ngIf="!inputVisible"
+                class="editable-tag"
+                nzNoAnimation
+                nz-button
+                nz-popover
+                nzPopoverTitle="Add Tag"
+                [(nzPopoverVisible)]="visibleCreateTagPopover"
+                (nzPopoverVisibleChange)="changeCreateTagStatusPopOver($event)"
+                nzPopoverTrigger="click"
+                [nzPopoverContent]="contentTemplate"
+              >
+                <span nz-icon nzType="plus"></span>
+              </button>
+              <ng-template #contentTemplate>
+                <div class="input">
+                  <input
+                    class="input-popover"
+                    #inputElement
+                    nz-input
+                    type="text"
+                    [(ngModel)]="inputValue"
+                    (blur)="handleInputConfirm()"
+                    (keydown.enter)="handleInputConfirm()"
+                  />
+                  <input style="margin-left: 10px" type="color" id="color" />
+                </div>
+
+                <div class="button-container">
+                  <button class="btn-cancel" (click)="onClickCancelPopover()">
+                    Cancel
+                  </button>
+                  <button class="btn-ok" (click)="handleInputConfirm()">
+                    OK
+                  </button>
+                </div>
+              </ng-template>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div nz-col nzSpan="24">
-      <nz-table #rowSelectionTable #basicTable [nzFrontPagination]="false" [nzData]="listOfData" [nzScroll]="{x: 'auto'}">
+      <nz-table
+        #rowSelectionTable
+        #basicTable
+        [nzFrontPagination]="false"
+        [nzData]="listOfData"
+        [nzScroll]="{ x: 'auto' }"
+      >
         <thead class="thead-container">
           <tr>
             <th></th>
-            <th class="thead-title" *ngFor="let tableTitle of dataTitle" [nzWidth]="tableTitle.width">
+            <th
+              class="thead-title"
+              *ngFor="let tableTitle of dataTitle"
+              [nzWidth]="tableTitle.width"
+            >
               <ng-container *ngIf="!tableTitle.icon; else noIcon">
                 <span>{{ tableTitle.label }}</span>
               </ng-container>
               <ng-template #noIcon>
                 <span>{{ tableTitle.label }} </span>
-                <span nz-icon nzType="exclamation-circle" nzTheme="fill"></span>
+                <span nz-icon nzType="arrow-down" nzTheme="outline"></span>
               </ng-template>
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of basicTable.data">
-            <td [nzChecked]="true" [nzDisabled]="false"></td>
+          <tr *ngFor="let data of basicTable.data; let i = index">
+            <td [nzChecked]="false" [nzDisabled]="false"></td>
             <td>
               <div nz-row [nzGutter]="[0, 24]">
                 <div class="avatar" nz-col nzSpan="2">
@@ -106,15 +158,18 @@
                       {{ data.title }}
                     </div>
                     <div nz-col nzSpan="20">
-                      <nz-tag [nzColor]="'#ecb5ff'">House</nz-tag>
-                      <nz-tag [nzColor]="'#a7ed8e'">Music</nz-tag>
-                      <nz-tag [nzColor]="'#ffb8b8'">Art</nz-tag>
+                      <nz-tag
+                        style="color: black"
+                        *ngFor="let tag of data.tags"
+                        [nzColor]="tag.color"
+                        >{{ tag.title }}</nz-tag
+                      >
                     </div>
                   </div>
                 </div>
                 <div nz-col nzSpan="12" class="action">
                   <button
-                    *ngIf="data.status === 'Boost post'"
+                    *ngIf="data.isBoostPost === true"
                     nz-button
                     style="
                       background: rgba(255, 184, 184, 0.4);
@@ -123,10 +178,10 @@
                       width: 105px;
                     "
                   >
-                    {{ data.status }}
+                    Boost post
                   </button>
                   <button
-                    *ngIf="data.status === 'Insight'"
+                    *ngIf="data.isBoostPost === false"
                     nz-button
                     style="
                       background: rgba(163, 218, 255, 0.4);
@@ -135,21 +190,44 @@
                       width: 105px;
                     "
                   >
-                    {{ data.status }}
+                    Insight
                   </button>
                   <button
                     nz-button
                     nz-dropdown
                     [nzDropdownMenu]="postActions"
-                    style="border-radius: 4px; margin: 6px; width: 27px; display: flex; justify-content: center; align-items: center;"
+                    style="
+                      border-radius: 4px;
+                      margin: 6px;
+                      width: 27px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
                   >
-                  <i style="height: 14px;" nz-icon nzType="ellipsis" nzTheme="outline"></i>
+                    <i
+                      style="height: 14px"
+                      nz-icon
+                      nzType="ellipsis"
+                      nzTheme="outline"
+                    ></i>
                   </button>
                   <nz-dropdown-menu #postActions="nzDropdownMenu">
-                    <ul nz-menu>
+                    <ul nz-menu #menu>
                       <li nz-menu-item>
+                        <span>Edit</span>
+                      </li>
+                      <li
+                        nz-menu-item
+                        nz-popover
+                        nzPopoverPlacement="topRight"
+                        nzPopoverTrigger="click"
+                        [nzPopoverContent]="addTagTemplate"
+                        (click)="onClickAddTag(i)"
+                      >
                         <span>Add Tag</span>
                       </li>
+
                       <li nz-menu-item>
                         <span>Delete</span>
                       </li>
@@ -158,7 +236,7 @@
                 </div>
               </div>
             </td>
-            <td >{{ data.datePublished | date : "dd MMMM hh:mm" }}</td>
+            <td>{{ data.datePublished | date : "dd MMMM hh:mm" }}</td>
             <td>
               <div class="reach">
                 {{ data.reach }}
@@ -219,13 +297,26 @@
       </nz-table>
       <div nz-row nzJustify="center" nzAlign="middle">
         <div colspan="24">
-      <nz-pagination
-        [(nzPageIndex)]="currentPage"
-        [nzTotal]="50"
-        [nzSize]="'small'"
-      ></nz-pagination>
+          <nz-pagination
+            [(nzPageIndex)]="currentPage"
+            [nzTotal]="50"
+            [nzSize]="'small'"
+          ></nz-pagination>
         </div>
       </div>
     </div>
   </div>
 </ng-container>
+
+<ng-template #addTagTemplate>
+  <nz-tag
+    style="color: black;"
+    *ngFor="let tag of tags; let i = index"
+    [nzMode]="'closeable'"
+    (nzOnClose)="handleCloseAddTags(tag)"
+    [nzColor]="tag.color"
+    (keydown.enter)="handleInputConfirm()"
+  >
+    {{ sliceTagName(tag.title) }}
+  </nz-tag>
+</ng-template>

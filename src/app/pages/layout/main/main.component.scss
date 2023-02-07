@@ -5,8 +5,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+nz-layout {
+  background: #fff;
+}
 .app-layout {
   height: 100%;
+  background: white !important;
 }
 
 .menu-sidebar {
@@ -14,6 +18,7 @@
   z-index: 10;
   min-height: 100vh;
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  height: 100%;
 }
 
 .header-trigger {
@@ -135,4 +140,3 @@ nz-content {
 .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
   border-right: none !important;
 }
-

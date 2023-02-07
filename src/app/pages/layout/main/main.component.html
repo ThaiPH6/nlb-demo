@@ -89,13 +89,12 @@
             nz-button
             nz-dropdown
             [nzDropdownMenu]="menu"
-            [routerLink]="['/main/campaigns/create-campaigns']"
           >
             Create <span nz-icon nzType="plus" nzTheme="outline"></span>
           </button>
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu>
-              <li nz-menu-item>
+              <li nz-menu-item [routerLink]="'/main/post&story/create'">
                 <img style="padding-right: 10.5px;" src="../../../../assets/icons/post-icon.svg">
                 <span>Posts</span>
               </li>
