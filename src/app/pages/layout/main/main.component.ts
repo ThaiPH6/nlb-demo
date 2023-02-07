@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, NavigationStart, Router} from "@angular/router";
+import { Subscription } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-main',
@@ -8,9 +12,16 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
 
   isCollapsed = false;
-  constructor() { }
+  dashboardRoute = '/main/dashboard'
+  currentRoute!: string;
+  constructor(private router: Router) { }
 
+  onActivate() {
+    this.currentRoute = this.router.url
+  }
   ngOnInit(): void {
+    this.currentRoute = this.router.url
+  }
   }
 
-}
+

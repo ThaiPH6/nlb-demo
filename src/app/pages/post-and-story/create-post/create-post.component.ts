@@ -27,35 +27,54 @@ export class CreatePost implements OnInit {
       label: 'Facebook Post',
       value: 'Facebook Post',
       logo: 'facebook',
+      previewLabel: 'Facebook News Feed preview',
+      selected: true
     },
     {
       label: 'Instagram Post',
       value: 'Instagram Post',
       logo: 'instagram',
+      previewLabel: 'Instagram News Feed preview',
+      selected: false
     },
     {
       label: 'Instagram Story',
       value: 'Instagram Story',
       logo: 'instagram',
+      previewLabel: 'Instagram Story preview',
+      selected: false
     },
     {
       label: 'Telegram',
       value: 'Telegram',
       logo: 'wechat',
+      previewLabel: 'Telegram News Feed preview',
+      selected: false
     },
     {
       label: 'Tiktok',
       value: 'Tiktok',
       logo: 'tiktok',
+      previewLabel: 'Tiktok News Feed preview',
+      selected: false
     },
     {
       label: 'Youtube',
       value: 'Youtube',
       logo: 'youtube',
+      previewLabel: 'Youtube News Feed preview',
+      selected: false
     },
   ];
 
   listOfTags = [
+    { title: 'House', color: '#ecb5ff' },
+    { title: 'Music', color: '#a7ed8e' },
+    { title: 'Art', color: '#ffb8b8' },
+    { title: 'Education', color: '#a3daff' },
+  ];
+
+  tagsToAdd = [
     { title: 'House', color: '#ecb5ff' },
     { title: 'Music', color: '#a7ed8e' },
     { title: 'Art', color: '#ffb8b8' },
@@ -85,10 +104,26 @@ export class CreatePost implements OnInit {
   scrollX: string | null = null;
   scrollY: string | null = null;
 
-  postTo: string = '';
+  postTo = [{
+    label: 'Facebook Post',
+    value: 'Facebook Post',
+    logo: 'facebook',
+    previewLabel: 'Facebook News Feed preview',
+    selected: true
+  }];
+
+  defaultOptionPosto = [...this.postTo];
+  
   privacy: string = '';
   status: string = '';
   isBoostPost: boolean = true;
+
+  selectedSitePreview: string = '';
+
+  visibleCreateTagPopover: boolean = false;
+  visibleCreateAddPopover: boolean = false;
+
+  inputColor: any;
 
   constructor(
     private fb: FormBuilder,
@@ -135,13 +170,13 @@ export class CreatePost implements OnInit {
   }
 
   handleInputConfirm(): void {
-    if (this.fc['newtag'].value) {
-      this.listOfTags.push({
-        title: this.fc['newtag'].value,
-        color: '#a3daff',
-      });
+    this.visibleCreateTagPopover = false;
+    this.inputColor = document.getElementById('color');
+    if (this.inputValue) {
+      this.listOfTags.push({ title: this.inputValue, color: this.inputColor.value });
+      this.tagsToAdd.push({ title: this.inputValue, color: this.inputColor.value });
     }
-    this.fc['newtag'].setValue('');
+    this.inputValue = '';
     this.inputVisible = false;
   }
 
@@ -161,11 +196,7 @@ export class CreatePost implements OnInit {
         imageUrl = this._sanitizer.bypassSecurityTrustResourceUrl(
           `${reader.result}`
         );
-        this.listOfPhotos = [...this.listOfPhotos, { image: imageUrl, size: '1425x838' }]
-        //this.listOfPhotos.push({ image: imageUrl, size: '123133' });
-        console.log('aaaa', file);
-        console.log('alooo', reader.result);
-        console.log(this.listOfPhotos);
+        this.listOfPhotos = [...this.listOfPhotos, { image: imageUrl, size: '1425x838' }];
 
         //reader.readAsDataURL(file);
         // this.registrationForm.patchValue({
@@ -203,5 +234,21 @@ export class CreatePost implements OnInit {
       nzContent: 'Now that your post is successfully published, you can boost it to help it reach more of the people that matter to you.'
     });
     this.router.navigateByUrl('/main/post&story');
+  }
+
+  onClickCancelPopover(): void {
+    this.visibleCreateTagPopover = false;
+  }
+
+  changeCreateTagStatusPopOver(value: boolean): void {
+    console.log(value);
+  }
+
+  changeAddTagStatusPopOver(value: boolean): void {
+    console.log(value);
+  }
+
+  onClickAddTag(index : any){
+    console.log(index);
   }
 }
